@@ -2,20 +2,27 @@
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
-import java.sql.CallableStatement;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import org.kevinvelasquez.system.Main;
+import java.sql.Date;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinvelasquez.database.Conexion;
 import org.kevinvelasquez.model.Producto;
@@ -26,30 +33,37 @@ import org.kevinvelasquez.system.Main;
  * @author Kevin
  */
 public class ProductosController implements Initializable {
+    @FXML
+    private TableView<Producto> tablaProductos;
+    @FXML
+    private TableColumn colIDProducto, colNombre, colDescripcion, colPrecioActual,
+            colPrecioAnterior, colDescuento, colCategoria, colCodigoBarra, 
+            colUltimaActualizacion, colStock;
+
+    @FXML
+    private TextField txtBuscar, txtIDProducto, txtNombre, txtPrecioActual,
+            txtPrecioAnterior, txtDescuento, txtCategoria, txtCodigoBarra, txtStock;
+
+    @FXML
+    private TextArea txtDescripcion;
+
+    @FXML
+    private DatePicker dpUltimaActualizacion;
+
+    @FXML
+    private Button btnAnterior, btnSiguiente, btnNuevo, btnEditar, btnEliminar,
+            btnGuardar, btnCancelar, btnBuscar;
+
     private Main principal;
+    private ObservableList<Producto> listaProductos;
+    private Producto modeloProducto;
 
-//    private ObservableList<Producto> listaProductos;
-//
-//    @FXML private TableView<Producto> tablaProductos;
-//    @FXML private TableColumn<Producto, Integer> colIdProducto;
-//    @FXML private TableColumn<Producto, String> colNombreProducto;
-//    @FXML private TableColumn<Producto, String> colDescripcionProducto;
-//    @FXML private TableColumn<Producto, Double> colPrecioActual;
-//    @FXML private TableColumn<Producto, Double> colPrecioAnterior;
-//    @FXML private TableColumn<Producto, String> colDescuentoProducto;
-//    @FXML private TableColumn<Producto, String> colCategoriaProducto;
-//    @FXML private TableColumn<Producto, String> colCodigoBarra;
-//    @FXML private TableColumn<Producto, String> colUltimaActualizacion;
-//    @FXML private TableColumn<Producto, Integer> colStock;
-//    
-//    @FXML private TextField txtNombre, txtDescripcion, txtPrecioActual, txtPrecioAnterior, txtDescuento,
-//                            txtCategoria, txtCodigoBarra, txtStock, txtBuscar;
-//    @FXML private DatePicker dpUltimaActualizacion;
-
-    public ProductosController() {
+    private enum EstadoFormulario {
+        AGREGAR, ELIMINAR, ACTUALIZAR, NINGUNA
     }
-    
-    public ProductosController(Main principal) {
+    EstadoFormulario EstadoActual = EstadoFormulario.NINGUNA;
+
+    public void setPrincipal(Main principal) {
         this.principal = principal;
     }
 
@@ -57,126 +71,288 @@ public class ProductosController implements Initializable {
         return principal;
     }
 
-    public void setPrincipal(Main principal) {
-        this.principal = principal;
+    public void escenaMenuPrincipal() {
+        principal.menu();
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        configurarColumnas();
-//        cargarDatos();
-    }    
-    
-//    private void configurarColumnas() {
-//        colIdProducto.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
-//        colNombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
-//        colDescripcionProducto.setCellValueFactory(new PropertyValueFactory<>("descripcionProducto"));
-//        colPrecioActual.setCellValueFactory(new PropertyValueFactory<>("precioActual"));
-//        colPrecioAnterior.setCellValueFactory(new PropertyValueFactory<>("precioAnterior"));
-//        colDescuentoProducto.setCellValueFactory(new PropertyValueFactory<>("descuentoProducto"));
-//        colCategoriaProducto.setCellValueFactory(new PropertyValueFactory<>("categoriaProducto"));
-//        colCodigoBarra.setCellValueFactory(new PropertyValueFactory<>("codigoBarra"));
-//        colUltimaActualizacion.setCellValueFactory(new PropertyValueFactory<>("ultimaActualizacion"));
-//        colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-//    }
-//
-//    private ArrayList<Producto> obtenerProductos() {
-//        ArrayList<Producto> productos = new ArrayList<>();
-//
-//        try {
-//            CallableStatement cs = Conexion.getInstancia().getConexion().prepareCall("{call sp_listarProductos()}");
-//            ResultSet rs = cs.executeQuery();
-//
-//            while (rs.next()) {
-//                productos.add(new Producto(
-//                    rs.getInt("ID"),
-//                    rs.getString("NOMBRE"),
-//                    rs.getString("DESCRIPCION"),
-//                    rs.getDouble("PRECIO_ACTUAL"),
-//                    rs.getDouble("PRECIO_ANTERIOR"),
-//                    rs.getString("DESCUENTO"),
-//                    rs.getString("CATEGORIA"),
-//                    rs.getString("CODIGO_BARRA"),
-//                    rs.getDate("ULTIMA_ACTUALIZACION").toLocalDate(),
-//                    rs.getInt("STOCK")
-//                ));
-//            }
-//
-//        } catch (SQLException e) {
-//            System.out.println("Error al cargar productos");
-//            e.printStackTrace();
-//        }
-//
-//        return productos;
-//    }
-//
-//    private void cargarDatos() {
-//        listaProductos = FXCollections.observableArrayList(obtenerProductos());
-//        tablaProductos.setItems(listaProductos);
-//    }
-//    
-//     @FXML
-//    private void agregarProducto() {
-//        try {
-//            CallableStatement cs = Conexion.getInstancia().getConexion().prepareCall("{call sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-//            cs.setString(1, txtNombre.getText());
-//            cs.setString(2, txtDescripcion.getText());
-//            cs.setDouble(3, Double.parseDouble(txtPrecioActual.getText()));
-//            cs.setDouble(4, Double.parseDouble(txtPrecioAnterior.getText()));
-//            cs.setString(5, txtDescuento.getText());
-//            cs.setString(6, txtCategoria.getText());
-//            cs.setString(7, txtCodigoBarra.getText());
-//            cs.setDate(8, Date.valueOf(dpUltimaActualizacion.getValue()));
-//            cs.setInt(9, Integer.parseInt(txtStock.getText()));
-//            cs.execute();
-//            cargarDatos();
-//            limpiarCampos();
-//            System.out.println("Producto agregado correctamente.");
-//        } catch (SQLException e) {
-//            System.out.println("Error al agregar producto");
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @FXML
-//    private void eliminarProducto() {
-//        Producto producto = tablaProductos.getSelectionModel().getSelectedItem();
-//        if (producto != null) {
-//            try {
-//                CallableStatement cs = Conexion.getInstancia().getConexion().prepareCall("{call sp_EliminarProducto(?)}");
-//                cs.setInt(1, producto.getIdProducto());
-//                cs.execute();
-//                cargarDatos();
-//                limpiarCampos();
-//                System.out.println("Producto eliminado correctamente.");
-//            } catch (SQLException e) {
-//                System.out.println("Error al eliminar producto");
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("Seleccione un producto para eliminar.");
-//        }
-//    }
-//
-//    @FXML
-//    private void buscarProducto() {
-//        String texto = txtBuscar.getText().toLowerCase();
-//        ArrayList<Producto> resultados = new ArrayList<>();
-//        for (Producto p : listaProductos) {
-//            if (p.getNombreProducto().toLowerCase().contains(texto)) {
-//                resultados.add(p);
-//            }
-//        }
-//        tablaProductos.setItems(FXCollections.observableArrayList(resultados));
-//        if (!resultados.isEmpty()) {
-//            tablaProductos.getSelectionModel().selectFirst();
-//        }
-//    }
-//
-//    private void limpiarCampos() {
-//        txtNombre.clear(); txtDescripcion.clear(); txtPrecioActual.clear(); txtPrecioAnterior.clear();
-//        txtDescuento.clear(); txtCategoria.clear(); txtCodigoBarra.clear(); txtStock.clear();
-//        dpUltimaActualizacion.setValue(null);
-//    }    
+        configurarColumnas();
+        cargarTablaProductos();
+        tablaProductos.setOnMouseClicked(eh -> cargarProductoEnTextField());
+    }
+
+    public void configurarColumnas() {
+        colIDProducto.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("idProducto"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+        colPrecioActual.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioActual"));
+        colPrecioAnterior.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioAnterior"));
+        colDescuento.setCellValueFactory(new PropertyValueFactory<Producto, String>("descuentoProducto"));
+        colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoriaProducto"));
+        colCodigoBarra.setCellValueFactory(new PropertyValueFactory<Producto, String>("codigoBarra"));
+        colUltimaActualizacion.setCellValueFactory(new PropertyValueFactory<Producto, LocalDate>("ultimaActualizacion"));
+        colStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("stock"));
+    }
+
+    private ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
+        try {
+            CallableStatement enunciado = Conexion.getInstancia().getConexion()
+                    .prepareCall("call sp_listarProductos();");
+            ResultSet resultado = enunciado.executeQuery();
+            while (resultado.next()) {
+                productos.add(new Producto(
+                        resultado.getInt("ID"),
+                        resultado.getString("NOMBRE"),
+                        resultado.getString("DESCRIPCION"),
+                        resultado.getDouble("PRECIO_ACTUAL"),
+                        resultado.getDouble("PRECIO_ANTERIOR"),
+                        resultado.getString("DESCUENTO"),
+                        resultado.getString("CATEGORIA"),
+                        resultado.getString("CODIGO_BARRA"),
+                        resultado.getDate("ULTIMA_ACTUALIZACION") != null ? 
+                        resultado.getDate("ULTIMA_ACTUALIZACION").toLocalDate() : null,
+                        resultado.getInt("STOCK")
+                ));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al cargar productos: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return productos;
+    }
+
+    private void cargarProductoEnTextField() {
+        Producto productoSeleccionado = tablaProductos.getSelectionModel().getSelectedItem();
+        if (productoSeleccionado != null) {
+            txtIDProducto.setText(String.valueOf(productoSeleccionado.getIdProducto()));
+            txtNombre.setText(productoSeleccionado.getNombreProducto());
+            txtDescripcion.setText(productoSeleccionado.getDescripcionProducto());
+            txtPrecioActual.setText(String.valueOf(productoSeleccionado.getPrecioActual()));
+            txtPrecioAnterior.setText(String.valueOf(productoSeleccionado.getPrecioAnterior()));
+            txtDescuento.setText(productoSeleccionado.getDescuentoProducto());
+            txtCategoria.setText(productoSeleccionado.getCategoriaProducto());
+            txtCodigoBarra.setText(productoSeleccionado.getCodigoBarra());
+            dpUltimaActualizacion.setValue(productoSeleccionado.getUltimaActualizacion());
+            txtStock.setText(String.valueOf(productoSeleccionado.getStock()));
+        }
+    }
+
+    private void cargarTablaProductos() {
+        listaProductos = FXCollections.observableArrayList(listarProductos());
+        tablaProductos.setItems(listaProductos);
+        if (!listaProductos.isEmpty()) {
+            tablaProductos.getSelectionModel().selectFirst();
+            cargarProductoEnTextField();
+        }
+    }
+
+    private Producto obtenerModeloProducto() {
+        int idProducto = txtIDProducto.getText().isEmpty() ? 0 : Integer.parseInt(txtIDProducto.getText());
+        String nombre = txtNombre.getText();
+        String descripcion = txtDescripcion.getText();
+        double precioActual = txtPrecioActual.getText().isEmpty() ? 0 : Double.parseDouble(txtPrecioActual.getText());
+        double precioAnterior = txtPrecioAnterior.getText().isEmpty() ? 0 : Double.parseDouble(txtPrecioAnterior.getText());
+        String descuento = txtDescuento.getText();
+        String categoria = txtCategoria.getText();
+        String codigoBarra = txtCodigoBarra.getText();
+        LocalDate ultimaActualizacion = dpUltimaActualizacion.getValue();
+        int stock = txtStock.getText().isEmpty() ? 0 : Integer.parseInt(txtStock.getText());
+
+        return new Producto(
+                idProducto,
+                nombre,
+                descripcion,
+                precioActual,
+                precioAnterior,
+                descuento,
+                categoria,
+                codigoBarra,
+                ultimaActualizacion,
+                stock
+        );
+    }
+
+    private void insertarProducto() {
+        modeloProducto = obtenerModeloProducto();
+        try {
+            CallableStatement enunciado = Conexion.getInstancia().getConexion()
+                    .prepareCall("call sp_agregarProducto(?,?,?,?,?,?,?,?,?);");
+            enunciado.setString(1, modeloProducto.getNombreProducto());
+            enunciado.setString(2, modeloProducto.getDescripcionProducto());
+            enunciado.setDouble(3, modeloProducto.getPrecioActual());
+            enunciado.setDouble(4, modeloProducto.getPrecioAnterior());
+            enunciado.setString(5, modeloProducto.getDescuentoProducto());
+            enunciado.setString(6, modeloProducto.getCategoriaProducto());
+            enunciado.setString(7, modeloProducto.getCodigoBarra());
+            enunciado.setDate(8, modeloProducto.getUltimaActualizacion() != null ? 
+                    Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
+            enunciado.setInt(9, modeloProducto.getStock());
+            enunciado.execute();
+            cargarTablaProductos();
+        } catch (SQLException ex) {
+            System.out.println("Error al agregar producto: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void actualizarProducto() {
+        modeloProducto = obtenerModeloProducto();
+        try {
+            CallableStatement enunciado = Conexion.getInstancia().getConexion()
+                    .prepareCall("call sp_editarProducto(?,?,?,?,?,?,?,?,?,?);");
+            enunciado.setInt(1, modeloProducto.getIdProducto());
+            enunciado.setString(2, modeloProducto.getNombreProducto());
+            enunciado.setString(3, modeloProducto.getDescripcionProducto());
+            enunciado.setDouble(4, modeloProducto.getPrecioActual());
+            enunciado.setDouble(5, modeloProducto.getPrecioAnterior());
+            enunciado.setString(6, modeloProducto.getDescuentoProducto());
+            enunciado.setString(7, modeloProducto.getCategoriaProducto());
+            enunciado.setString(8, modeloProducto.getCodigoBarra());
+            enunciado.setDate(9, modeloProducto.getUltimaActualizacion() != null ? 
+                    Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
+            enunciado.setInt(10, modeloProducto.getStock());
+            enunciado.execute();
+            cargarTablaProductos();
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar producto: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void eliminarProducto() {
+        modeloProducto = tablaProductos.getSelectionModel().getSelectedItem();
+        try {
+            CallableStatement enunciado = Conexion.getInstancia().getConexion()
+                    .prepareCall("call sp_eliminarProducto(?);");
+            enunciado.setInt(1, modeloProducto.getIdProducto());
+            enunciado.execute();
+            cargarTablaProductos();
+        } catch (SQLException ex) {
+            System.out.println("Error al eliminar producto: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void limpiarCampos() {
+        txtIDProducto.clear();
+        txtNombre.clear();
+        txtDescripcion.clear();
+        txtPrecioActual.clear();
+        txtPrecioAnterior.clear();
+        txtDescuento.clear();
+        txtCategoria.clear();
+        txtCodigoBarra.clear();
+        dpUltimaActualizacion.setValue(null);
+        txtStock.clear();
+    }
+
+    private void actualizarEstadoFormulario(EstadoFormulario estado) {
+        EstadoActual = estado;
+        boolean activo = (estado == EstadoFormulario.AGREGAR || estado == EstadoFormulario.ACTUALIZAR);
+
+        txtNombre.setDisable(!activo);
+        txtDescripcion.setDisable(!activo);
+        txtPrecioActual.setDisable(!activo);
+        txtPrecioAnterior.setDisable(!activo);
+        txtDescuento.setDisable(!activo);
+        txtCategoria.setDisable(!activo);
+        txtCodigoBarra.setDisable(!activo);
+        dpUltimaActualizacion.setDisable(!activo);
+        txtStock.setDisable(!activo);
+
+        tablaProductos.setDisable(activo);
+        btnBuscar.setDisable(activo);
+        txtBuscar.setDisable(activo);
+
+        btnNuevo.setText(activo ? "Guardar" : "Nuevo");
+        btnEliminar.setText(activo ? "Cancelar" : "Eliminar");
+        btnEditar.setDisable(activo);
+    }
+
+    @FXML
+    private void btnAnteriorAction() {
+        int indice = tablaProductos.getSelectionModel().getSelectedIndex();
+        if (indice > 0) {
+            tablaProductos.getSelectionModel().select(indice - 1);
+            cargarProductoEnTextField();
+        }
+    }
+
+    @FXML
+    private void btnSiguienteAction() {
+        int indice = tablaProductos.getSelectionModel().getSelectedIndex();
+        if (indice < listaProductos.size() - 1) {
+            tablaProductos.getSelectionModel().select(indice + 1);
+            cargarProductoEnTextField();
+        }
+    }
+
+    @FXML
+    private void btnNuevoAction() {
+        switch (EstadoActual) {
+            case NINGUNA:
+                limpiarCampos();
+                actualizarEstadoFormulario(EstadoFormulario.AGREGAR);
+                break;
+            case AGREGAR:
+                insertarProducto();
+                actualizarEstadoFormulario(EstadoFormulario.NINGUNA);
+                break;
+            case ACTUALIZAR:
+                actualizarProducto();
+                actualizarEstadoFormulario(EstadoFormulario.NINGUNA);
+                break;
+        }
+    }
+
+    @FXML
+    private void btnEditarAction() {
+        actualizarEstadoFormulario(EstadoFormulario.ACTUALIZAR);
+    }
+
+    @FXML
+    private void btnEliminarAction() {
+        if (EstadoActual == EstadoFormulario.NINGUNA) {
+            eliminarProducto();
+        } else {
+            actualizarEstadoFormulario(EstadoFormulario.NINGUNA);
+            cargarProductoEnTextField();
+        }
+    }
+
+    @FXML
+    private void btnCancelarAction() {
+        actualizarEstadoFormulario(EstadoFormulario.NINGUNA);
+        cargarProductoEnTextField();
+    }
+
+    @FXML
+    private void btnGuardarAction() {
+        if (EstadoActual == EstadoFormulario.AGREGAR) {
+            insertarProducto();
+        } else if (EstadoActual == EstadoFormulario.ACTUALIZAR) {
+            actualizarProducto();
+        }
+        actualizarEstadoFormulario(EstadoFormulario.NINGUNA);
+    }
+
+    @FXML
+    private void buscarProducto() {
+        String busqueda = txtBuscar.getText().toLowerCase();
+        ArrayList<Producto> resultadoBusqueda = new ArrayList<>();
+        for (Producto p : listaProductos) {
+            if (p.getNombreProducto().toLowerCase().contains(busqueda) ||
+                p.getDescripcionProducto().toLowerCase().contains(busqueda) ||
+                p.getCategoriaProducto().toLowerCase().contains(busqueda) ||
+                p.getCodigoBarra().toLowerCase().contains(busqueda)) {
+                resultadoBusqueda.add(p);
+            }
+        }
+        tablaProductos.setItems(FXCollections.observableArrayList(resultadoBusqueda));
+        if (!resultadoBusqueda.isEmpty()) {
+            tablaProductos.getSelectionModel().selectFirst();
+        }
+    }
 }
