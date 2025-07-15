@@ -1,4 +1,3 @@
-
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -23,13 +22,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinvelasquez.database.Conexion;
 import org.kevinvelasquez.model.DetallePedido;
 import org.kevinvelasquez.model.Pedidos;
-import org.kevinvelasquez.model.Productos;
+import org.kevinvelasquez.model.Producto;
 
 /**
  *
  * @author Kevin
  */
 public class DetallePedidoController implements Initializable {
+
     @FXML
     private TableView<DetallePedido> tablaDetallePedido;
     @FXML
@@ -41,7 +41,7 @@ public class DetallePedidoController implements Initializable {
     @FXML
     private ComboBox<Pedidos> cbxPedidos;
     @FXML
-    private ComboBox<Productos> cbxProductos;
+    private ComboBox<Producto> cbxProductos;
 
     @FXML
     private Spinner<Integer> spCantidad;
@@ -69,6 +69,34 @@ public class DetallePedidoController implements Initializable {
 
     public void escenaMenuPrincipal() {
         principal.menu();
+    }
+
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
     }
 
     @Override
@@ -99,7 +127,7 @@ public class DetallePedidoController implements Initializable {
         ArrayList<DetallePedido> detalles = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_ListarDetallePedido();");
+                    .prepareCall("call sp_listarDetallesPedido();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
                 detalles.add(new DetallePedido(
@@ -144,14 +172,14 @@ public class DetallePedidoController implements Initializable {
         return pedidos;
     }
 
-    private ArrayList<Productos> listarProductos() {
-        ArrayList<Productos> productos = new ArrayList<>();
+    private ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
                     .prepareCall("call sp_listarProductos();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
-                productos.add(new Productos(
+                productos.add(new Producto(
                         resultado.getInt("ID"),
                         resultado.getString("NOMBRE"),
                         resultado.getString("DESCRIPCION"),
@@ -177,7 +205,7 @@ public class DetallePedidoController implements Initializable {
     }
 
     private void cargarProductos() {
-        ObservableList<Productos> listaProductos = FXCollections.observableArrayList(listarProductos());
+        ObservableList<Producto> listaProductos = FXCollections.observableArrayList(listarProductos());
         cbxProductos.setItems(listaProductos);
     }
 
@@ -185,7 +213,7 @@ public class DetallePedidoController implements Initializable {
         DetallePedido detalleSeleccionado = tablaDetallePedido.getSelectionModel().getSelectedItem();
         if (detalleSeleccionado != null) {
             txtIDDetalle.setText(String.valueOf(detalleSeleccionado.getIdDetalle()));
-            
+
             // Seleccionar el pedido correspondiente
             for (Pedidos p : cbxPedidos.getItems()) {
                 if (p.getIdPedido() == detalleSeleccionado.getIdPedido()) {
@@ -193,15 +221,15 @@ public class DetallePedidoController implements Initializable {
                     break;
                 }
             }
-            
+
             // Seleccionar el producto correspondiente
-            for (Productos pr : cbxProductos.getItems()) {
+            for (Producto pr : cbxProductos.getItems()) {
                 if (pr.getIdProducto() == detalleSeleccionado.getIdProducto()) {
                     cbxProductos.setValue(pr);
                     break;
                 }
             }
-            
+
             spCantidad.getValueFactory().setValue(detalleSeleccionado.getCantidad());
             txtPrecioUnitario.setText(String.valueOf(detalleSeleccionado.getPrecioUnitario()));
         }
@@ -219,7 +247,7 @@ public class DetallePedidoController implements Initializable {
     private DetallePedido obtenerModeloDetallePedido() {
         int idDetalle = txtIDDetalle.getText().isEmpty() ? 0 : Integer.parseInt(txtIDDetalle.getText());
         Pedidos pedidoSeleccionado = cbxPedidos.getSelectionModel().getSelectedItem();
-        Productos productoSeleccionado = cbxProductos.getSelectionModel().getSelectedItem();
+        Producto productoSeleccionado = cbxProductos.getSelectionModel().getSelectedItem();
         int cantidad = spCantidad.getValue();
         double precioUnitario = txtPrecioUnitario.getText().isEmpty() ? 0 : Double.parseDouble(txtPrecioUnitario.getText());
 
@@ -236,7 +264,7 @@ public class DetallePedidoController implements Initializable {
         modeloDetallePedido = obtenerModeloDetallePedido();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_AgregarDetallePedido(?,?,?,?);");
+                    .prepareCall("call sp_agregarDetallePedido(?,?,?,?);");
             enunciado.setInt(1, modeloDetallePedido.getIdPedido());
             enunciado.setInt(2, modeloDetallePedido.getIdProducto());
             enunciado.setInt(3, modeloDetallePedido.getCantidad());
@@ -253,7 +281,7 @@ public class DetallePedidoController implements Initializable {
         modeloDetallePedido = obtenerModeloDetallePedido();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EditarDetallePedido(?,?,?,?,?);");
+                    .prepareCall("call sp_editarDetallePedido(?,?,?,?,?);");
             enunciado.setInt(1, modeloDetallePedido.getIdDetalle());
             enunciado.setInt(2, modeloDetallePedido.getIdPedido());
             enunciado.setInt(3, modeloDetallePedido.getIdProducto());
@@ -271,7 +299,7 @@ public class DetallePedidoController implements Initializable {
         modeloDetallePedido = tablaDetallePedido.getSelectionModel().getSelectedItem();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EliminarDetallePedido(?);");
+                    .prepareCall("call sp_eliminarDetallePedido(?);");
             enunciado.setInt(1, modeloDetallePedido.getIdDetalle());
             enunciado.execute();
             cargarTablaDetallePedido();
@@ -379,9 +407,9 @@ public class DetallePedidoController implements Initializable {
         String busqueda = txtBuscar.getText().toLowerCase();
         ArrayList<DetallePedido> resultadoBusqueda = new ArrayList<>();
         for (DetallePedido dp : listaDetallePedido) {
-            if (String.valueOf(dp.getIdDetalle()).contains(busqueda) ||
-                String.valueOf(dp.getIdPedido()).contains(busqueda) ||
-                String.valueOf(dp.getIdProducto()).contains(busqueda)) {
+            if (String.valueOf(dp.getIdDetalle()).contains(busqueda)
+                    || String.valueOf(dp.getIdPedido()).contains(busqueda)
+                    || String.valueOf(dp.getIdProducto()).contains(busqueda)) {
                 resultadoBusqueda.add(dp);
             }
         }
