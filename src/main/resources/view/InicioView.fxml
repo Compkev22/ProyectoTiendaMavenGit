@@ -4,13 +4,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.InicioController">
     <stylesheets>
         <URL value="@inicioview.css" />
     </stylesheets>
    <children>
-      <Label layoutX="209.0" layoutY="76.0" text="Bienvenido a mi sistema de ventas" />
-      <Button layoutX="248.0" layoutY="164.0" mnemonicParsing="false" onAction="#vistaProducts" prefHeight="73.0" prefWidth="104.0" text="INICIAR" />
+      <Label layoutX="172.0" layoutY="76.0" text="Pagina Inicio">
+         <font>
+            <Font name="Arial Black" size="36.0" />
+         </font></Label>
+      <Button layoutX="248.0" layoutY="164.0" mnemonicParsing="false" onAction="#escenaMenuPrincipal" prefHeight="73.0" prefWidth="104.0" text="Menu Principal" />
+      <Button layoutX="391.0" layoutY="14.0" mnemonicParsing="false" text="Acerca De" />
+      <Button layoutX="488.0" layoutY="14.0" mnemonicParsing="false" text="Sobre Nosotros" />
    </children>
 </AnchorPane>

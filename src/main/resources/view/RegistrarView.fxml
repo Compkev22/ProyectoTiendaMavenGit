@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.kevinvelasquez.controller.RegistrarController">
+    <stylesheets>
+        <URL value="@registrarview.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="186.0" layoutY="31.0" text="Registrarse">
+         <font>
+            <Font name="Arial Black" size="36.0" />
+         </font>
+      </Label>
+      <TextField layoutX="226.0" layoutY="102.0" />
+      <TextField layoutX="226.0" layoutY="141.0" />
+      <TextField layoutX="226.0" layoutY="181.0" />
+      <TextField layoutX="226.0" layoutY="220.0" />
+      <TextField layoutX="226.0" layoutY="259.0" />
+      <Button layoutX="20.0" layoutY="19.0" mnemonicParsing="false" onAction="#escenaVolverLogin" text="Volver al Login" />
+      <Button layoutX="263.0" layoutY="301.0" mnemonicParsing="false" onAction="#escenaRegistrarseEntidades" text="Registrarse" />
+      <Label layoutX="226.0" layoutY="339.0" prefHeight="17.0" prefWidth="176.0" text="¿Ya tienes cuenta? Inicia Sesión" />
+      <Label layoutX="101.0" layoutY="106.0" text="Nombre Completo" />
+      <Label layoutX="160.0" layoutY="145.0" text="Usuario" />
+      <Label layoutX="102.0" layoutY="185.0" text="Correo Electronico" />
+      <Label layoutX="153.0" layoutY="224.0" text="Contrase;a" />
+      <Label layoutX="104.0" layoutY="263.0" text="Confirmar Contrase;a" />
+   </children>
+</AnchorPane>
