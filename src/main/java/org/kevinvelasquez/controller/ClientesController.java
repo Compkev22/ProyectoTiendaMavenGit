@@ -1,4 +1,3 @@
-
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -28,17 +27,18 @@ import org.kevinvelasquez.model.Clientes;
  * @author Kevin
  */
 public class ClientesController implements Initializable {
-   @FXML
+
+    @FXML
     private TableView<Clientes> tablaClientes;
     @FXML
-    private TableColumn colIDCliente, colNombreCliente, colApellidoCliente, 
+    private TableColumn colIDCliente, colNombreCliente, colApellidoCliente,
             colTelefonoCliente, colDireccionCliente, colEmailCliente, colFechaRegistro;
 
     @FXML
     private DatePicker dpFechaRegistro;
 
     @FXML
-    private TextField txtBuscar, txtIDCliente, txtNombreCliente, txtApellidoCliente, 
+    private TextField txtBuscar, txtIDCliente, txtNombreCliente, txtApellidoCliente,
             txtTelefonoCliente, txtDireccionCliente, txtEmailCliente;
 
     @FXML
@@ -64,6 +64,34 @@ public class ClientesController implements Initializable {
 
     public void escenaMenuPrincipal() {
         principal.menu();
+    }
+
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
     }
 
     @Override
@@ -96,8 +124,8 @@ public class ClientesController implements Initializable {
                         resultado.getString("APELLIDO"),
                         resultado.getString("TELEFONO"),
                         resultado.getString("DIRECCION"),
-                        resultado.getString("EMAIL"),
-                        resultado.getDate("FECHA_REGISTRO") != null 
+                        resultado.getString("CORREO"),
+                        resultado.getDate("FECHA_REGISTRO") != null
                         ? resultado.getDate("FECHA_REGISTRO").toLocalDate() : null
                 ));
             }
@@ -160,7 +188,7 @@ public class ClientesController implements Initializable {
             enunciado.setString(3, modeloCliente.getTelefonoCliente());
             enunciado.setString(4, modeloCliente.getDireccionCliente());
             enunciado.setString(5, modeloCliente.getEmailCliente());
-            enunciado.setDate(6, modeloCliente.getFechaRegistro() != null 
+            enunciado.setDate(6, modeloCliente.getFechaRegistro() != null
                     ? Date.valueOf(modeloCliente.getFechaRegistro()) : null);
             enunciado.execute();
             cargarTablaClientes();
@@ -181,7 +209,7 @@ public class ClientesController implements Initializable {
             enunciado.setString(4, modeloCliente.getTelefonoCliente());
             enunciado.setString(5, modeloCliente.getDireccionCliente());
             enunciado.setString(6, modeloCliente.getEmailCliente());
-            enunciado.setDate(7, modeloCliente.getFechaRegistro() != null 
+            enunciado.setDate(7, modeloCliente.getFechaRegistro() != null
                     ? Date.valueOf(modeloCliente.getFechaRegistro()) : null);
             enunciado.execute();
             cargarTablaClientes();
@@ -307,8 +335,8 @@ public class ClientesController implements Initializable {
         String nombre = txtBuscar.getText().toLowerCase();
         ArrayList<Clientes> resultadoBusqueda = new ArrayList<>();
         for (Clientes c : listaClientes) {
-            if (c.getNombreCliente().toLowerCase().contains(nombre) || 
-                c.getApellidoCliente().toLowerCase().contains(nombre)) {
+            if (c.getNombreCliente().toLowerCase().contains(nombre)
+                    || c.getApellidoCliente().toLowerCase().contains(nombre)) {
                 resultadoBusqueda.add(c);
             }
         }
@@ -316,5 +344,5 @@ public class ClientesController implements Initializable {
         if (!resultadoBusqueda.isEmpty()) {
             tablaClientes.getSelectionModel().selectFirst();
         }
-    }   
+    }
 }
