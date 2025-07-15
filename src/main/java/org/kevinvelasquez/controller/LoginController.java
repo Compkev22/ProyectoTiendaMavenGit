@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -11,11 +14,12 @@ import javafx.scene.control.TextField;
 import org.kevinvelasquez.system.Main;
 
 /**
+ * FXML Controller class
  *
- * @author Kevin
+ * @author Emilio
  */
 public class LoginController implements Initializable {
-    @FXML
+   @FXML
     private TextField txtUsuario;
     
     @FXML
@@ -31,16 +35,16 @@ public class LoginController implements Initializable {
         return principal;
     }
 
-    public void escenaVolverPaginaInicio() {
-        principal.inicio();
+    public void escenaVolverMenuPrincipal() {
+        principal.menu();
     }
 
     public void escenaRegistrarse() {
-        principal.registrar();
+        principal.escenaRegistrar();
     }
 
     public void escenaIngresar() {
-        principal.menu();
+        principal.escenaProductos();
     }
 
     @Override
@@ -80,5 +84,5 @@ public class LoginController implements Initializable {
     private void salir() {
         System.exit(0);
     }
-  
+
 }
