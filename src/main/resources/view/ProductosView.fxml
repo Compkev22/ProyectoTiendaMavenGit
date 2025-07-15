@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@productosview.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.kevinvelasquez.controller.ProductosController">
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@productosview.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.ProductosController">
    <children>
       <AnchorPane prefHeight="120.0" prefWidth="1180.0">
          <children>
@@ -44,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="144.0" text="Categorias" GridPane.columnIndex="1">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaCategorias" prefHeight="60.0" prefWidth="144.0" text="Categorias" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,7 +54,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Clientes" GridPane.columnIndex="2">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaClientes" prefHeight="60.0" prefWidth="135.0" text="Clientes" GridPane.columnIndex="2">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +63,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Contacto" GridPane.columnIndex="3">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaContacto" prefHeight="60.0" prefWidth="135.0" text="Contacto" GridPane.columnIndex="3">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,7 +72,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Detalles" GridPane.columnIndex="4">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaDetallePedido" prefHeight="60.0" prefWidth="135.0" text="Detalles" GridPane.columnIndex="4">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Empresas" GridPane.columnIndex="5">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaEmpresa" prefHeight="60.0" prefWidth="135.0" text="Empresas" GridPane.columnIndex="5">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -89,7 +90,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Garantias" GridPane.columnIndex="6">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaGarantias" prefHeight="60.0" prefWidth="135.0" text="Garantias" GridPane.columnIndex="6">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -98,7 +99,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Pedidos" GridPane.columnIndex="7">
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaPedidos" prefHeight="60.0" prefWidth="135.0" text="Pedidos" GridPane.columnIndex="7">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -127,11 +128,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="&lt;&lt;" />
-                  <Button mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" text="Agregar" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Editar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btnAnterior" mnemonicParsing="false" onAction="#btnAnteriorAction" text="&lt;&lt;" />
+                  <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#btnSiguienteAction" text="&gt;&gt;" GridPane.columnIndex="2" />
+                  <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#btnNuevoAction" text="Agregar" GridPane.rowIndex="1" />
+                  <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#btnEliminarAction" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#btnEditarAction" prefHeight="40.0" prefWidth="89.0" text="Editar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane layoutX="20.0" layoutY="493.0">
@@ -143,11 +144,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Buscar" />
-                  <TextField GridPane.columnIndex="1" />
+                  <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarProducto" text="Buscar" />
+                  <TextField fx:id="txtBuscar" onAction="#buscarProducto" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button layoutX="20.0" layoutY="721.0" mnemonicParsing="false">
+            <Button layoutX="20.0" layoutY="721.0" mnemonicParsing="false" onAction="#escenaMenuPrincipal">
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -162,18 +163,18 @@
          <center>
             <Pane prefHeight="700.0" prefWidth="891.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView prefHeight="350.0" prefWidth="930.0">
+                  <TableView fx:id="tablaProductos" prefHeight="350.0" prefWidth="930.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="75.0" text="Nombre" />
-                        <TableColumn minWidth="90.0" prefWidth="75.0" text="Descripcion" />
-                        <TableColumn minWidth="115.0" prefWidth="75.0" text="Precio Actual" />
-                        <TableColumn minWidth="115.0" prefWidth="75.0" text="Precio Anterior" />
-                        <TableColumn minWidth="50.0" prefWidth="75.0" text="Descuento" />
-                        <TableColumn minWidth="115.0" text="Categoria" />
-                        <TableColumn prefWidth="75.0" text="EAN" />
-                        <TableColumn minWidth="93.0" prefWidth="75.0" text="Actualizacion" />
-                        <TableColumn prefWidth="75.0" text="Stock" />
+                      <TableColumn fx:id="colIDProducto" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                        <TableColumn fx:id="colDescripcion" minWidth="90.0" prefWidth="75.0" text="Descripcion" />
+                        <TableColumn fx:id="colPrecioActual" minWidth="115.0" prefWidth="75.0" text="Precio Actual" />
+                        <TableColumn fx:id="colPrecioAnterior" minWidth="115.0" prefWidth="75.0" text="Precio Anterior" />
+                        <TableColumn fx:id="colDescuento" minWidth="50.0" prefWidth="75.0" text="Descuento" />
+                        <TableColumn fx:id="colCategoria" minWidth="115.0" text="Categoria" />
+                        <TableColumn fx:id="colCodigoBarra" prefWidth="75.0" text="EAN" />
+                        <TableColumn fx:id="colUltimaActualizacion" minWidth="93.0" prefWidth="75.0" text="Actualizacion" />
+                        <TableColumn fx:id="colStock" prefWidth="75.0" text="Stock" />
                     </columns>
                   </TableView>
                </children>
@@ -196,15 +197,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <DatePicker prefHeight="25.0" prefWidth="317.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <TextField fx:id="txtIDProducto" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtPrecioActual" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtPrecioAnterior" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtDescuento" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" />
+            <TextField fx:id="txtCategoria" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCodigoBarra" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dpUltimaActualizacion" prefHeight="25.0" prefWidth="317.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="ID" textFill="WHITE" />
             <Label text="Nombre" textFill="WHITE" GridPane.rowIndex="1" />
             <Label prefWidth="147.0" text="Descripcion" textFill="WHITE" GridPane.rowIndex="2" />
@@ -215,7 +215,8 @@
             <Label text="EAN" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label text="Actualizacion" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="Stock" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="txtStock" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextArea fx:id="txtDescripcion" prefHeight="20.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
