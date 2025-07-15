@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -33,11 +36,12 @@ import org.kevinvelasquez.system.Main;
  * @author Kevin
  */
 public class ProductosController implements Initializable {
+
     @FXML
     private TableView<Producto> tablaProductos;
     @FXML
     private TableColumn colIDProducto, colNombre, colDescripcion, colPrecioActual,
-            colPrecioAnterior, colDescuento, colCategoria, colCodigoBarra, 
+            colPrecioAnterior, colDescuento, colCategoria, colCodigoBarra,
             colUltimaActualizacion, colStock;
 
     @FXML
@@ -73,6 +77,34 @@ public class ProductosController implements Initializable {
 
     public void escenaMenuPrincipal() {
         principal.menu();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
     }
 
     @Override
@@ -111,8 +143,8 @@ public class ProductosController implements Initializable {
                         resultado.getString("DESCUENTO"),
                         resultado.getString("CATEGORIA"),
                         resultado.getString("CODIGO_BARRA"),
-                        resultado.getDate("ULTIMA_ACTUALIZACION") != null ? 
-                        resultado.getDate("ULTIMA_ACTUALIZACION").toLocalDate() : null,
+                        resultado.getDate("ULTIMA_ACTUALIZACION") != null
+                        ? resultado.getDate("ULTIMA_ACTUALIZACION").toLocalDate() : null,
                         resultado.getInt("STOCK")
                 ));
             }
@@ -186,8 +218,8 @@ public class ProductosController implements Initializable {
             enunciado.setString(5, modeloProducto.getDescuentoProducto());
             enunciado.setString(6, modeloProducto.getCategoriaProducto());
             enunciado.setString(7, modeloProducto.getCodigoBarra());
-            enunciado.setDate(8, modeloProducto.getUltimaActualizacion() != null ? 
-                    Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
+            enunciado.setDate(8, modeloProducto.getUltimaActualizacion() != null
+                    ? Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
             enunciado.setInt(9, modeloProducto.getStock());
             enunciado.execute();
             cargarTablaProductos();
@@ -210,8 +242,8 @@ public class ProductosController implements Initializable {
             enunciado.setString(6, modeloProducto.getDescuentoProducto());
             enunciado.setString(7, modeloProducto.getCategoriaProducto());
             enunciado.setString(8, modeloProducto.getCodigoBarra());
-            enunciado.setDate(9, modeloProducto.getUltimaActualizacion() != null ? 
-                    Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
+            enunciado.setDate(9, modeloProducto.getUltimaActualizacion() != null
+                    ? Date.valueOf(modeloProducto.getUltimaActualizacion()) : null);
             enunciado.setInt(10, modeloProducto.getStock());
             enunciado.execute();
             cargarTablaProductos();
@@ -343,10 +375,10 @@ public class ProductosController implements Initializable {
         String busqueda = txtBuscar.getText().toLowerCase();
         ArrayList<Producto> resultadoBusqueda = new ArrayList<>();
         for (Producto p : listaProductos) {
-            if (p.getNombreProducto().toLowerCase().contains(busqueda) ||
-                p.getDescripcionProducto().toLowerCase().contains(busqueda) ||
-                p.getCategoriaProducto().toLowerCase().contains(busqueda) ||
-                p.getCodigoBarra().toLowerCase().contains(busqueda)) {
+            if (p.getNombreProducto().toLowerCase().contains(busqueda)
+                    || p.getDescripcionProducto().toLowerCase().contains(busqueda)
+                    || p.getCategoriaProducto().toLowerCase().contains(busqueda)
+                    || p.getCodigoBarra().toLowerCase().contains(busqueda)) {
                 resultadoBusqueda.add(p);
             }
         }
