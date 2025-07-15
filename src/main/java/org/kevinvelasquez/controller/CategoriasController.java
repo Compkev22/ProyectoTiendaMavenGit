@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -58,6 +61,34 @@ public class CategoriasController implements Initializable {
 
     public void escenaMenuPrincipal() {
         principal.menu();
+    }
+
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
     }
 
     @Override
@@ -279,5 +310,5 @@ public class CategoriasController implements Initializable {
         if (!resultadoBusqueda.isEmpty()) {
             tablaCategorias.getSelectionModel().selectFirst();
         }
-    }     
+    }
 }
