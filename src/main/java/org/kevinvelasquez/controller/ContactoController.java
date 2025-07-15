@@ -1,4 +1,3 @@
-
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -29,7 +28,8 @@ import org.kevinvelasquez.model.Contacto;
  * @author Kevin
  */
 public class ContactoController implements Initializable {
- @FXML
+
+    @FXML
     private TableView<Contacto> tablaContactos;
     @FXML
     private TableColumn colIDContacto, colNombre, colEmail, colMensaje, colFechaEnvio;
@@ -68,6 +68,34 @@ public class ContactoController implements Initializable {
         principal.menu();
     }
 
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarColumnas();
@@ -87,16 +115,16 @@ public class ContactoController implements Initializable {
         ArrayList<Contacto> contactos = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_ListarContacto();");
+                    .prepareCall("call sp_listarContactos();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
                 contactos.add(new Contacto(
-                        resultado.getInt("idContacto"),
-                        resultado.getString("nombre"),
-                        resultado.getString("email"),
-                        resultado.getString("mensaje"),
-                        resultado.getDate("fechaEnvio") != null 
-                        ? resultado.getDate("fechaEnvio").toLocalDate() : null
+                        resultado.getInt("ID"),
+                        resultado.getString("NOMBRE"),
+                        resultado.getString("EMAIL"),
+                        resultado.getString("MENSAJE"),
+                        resultado.getDate("FECHA_ENVIO") != null
+                        ? resultado.getDate("FECHA_ENVIO").toLocalDate() : null
                 ));
             }
         } catch (SQLException ex) {
@@ -146,11 +174,11 @@ public class ContactoController implements Initializable {
         modeloContacto = obtenerModeloContacto();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_AgregarContacto(?,?,?,?);");
+                    .prepareCall("call sp_agregarContacto(?,?,?,?);");
             enunciado.setString(1, modeloContacto.getNombre());
             enunciado.setString(2, modeloContacto.getEmail());
             enunciado.setString(3, modeloContacto.getMensaje());
-            enunciado.setDate(4, modeloContacto.getFechaEnvio() != null 
+            enunciado.setDate(4, modeloContacto.getFechaEnvio() != null
                     ? Date.valueOf(modeloContacto.getFechaEnvio()) : null);
             enunciado.execute();
             cargarTablaContactos();
@@ -164,12 +192,12 @@ public class ContactoController implements Initializable {
         modeloContacto = obtenerModeloContacto();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EditarContacto(?,?,?,?,?);");
+                    .prepareCall("call sp_editarContacto(?,?,?,?,?);");
             enunciado.setInt(1, modeloContacto.getIdContacto());
             enunciado.setString(2, modeloContacto.getNombre());
             enunciado.setString(3, modeloContacto.getEmail());
             enunciado.setString(4, modeloContacto.getMensaje());
-            enunciado.setDate(5, modeloContacto.getFechaEnvio() != null 
+            enunciado.setDate(5, modeloContacto.getFechaEnvio() != null
                     ? Date.valueOf(modeloContacto.getFechaEnvio()) : null);
             enunciado.execute();
             cargarTablaContactos();
@@ -183,7 +211,7 @@ public class ContactoController implements Initializable {
         modeloContacto = tablaContactos.getSelectionModel().getSelectedItem();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EliminarContacto(?);");
+                    .prepareCall("call sp_eliminarContacto(?);");
             enunciado.setInt(1, modeloContacto.getIdContacto());
             enunciado.execute();
             cargarTablaContactos();
@@ -291,8 +319,8 @@ public class ContactoController implements Initializable {
         String nombre = txtBuscar.getText().toLowerCase();
         ArrayList<Contacto> resultadoBusqueda = new ArrayList<>();
         for (Contacto c : listaContactos) {
-            if (c.getNombre().toLowerCase().contains(nombre) || 
-                c.getEmail().toLowerCase().contains(nombre)) {
+            if (c.getNombre().toLowerCase().contains(nombre)
+                    || c.getEmail().toLowerCase().contains(nombre)) {
                 resultadoBusqueda.add(c);
             }
         }
@@ -300,6 +328,6 @@ public class ContactoController implements Initializable {
         if (!resultadoBusqueda.isEmpty()) {
             tablaContactos.getSelectionModel().selectFirst();
         }
-    }   
-        
+    }
+
 }
