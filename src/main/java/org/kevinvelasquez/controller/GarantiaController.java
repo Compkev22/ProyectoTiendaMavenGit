@@ -1,4 +1,3 @@
-
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -20,13 +19,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinvelasquez.database.Conexion;
 import org.kevinvelasquez.model.Garantia;
-import org.kevinvelasquez.model.Productos;
+import org.kevinvelasquez.model.Producto;
 
 /**
  *
  * @author Kevin
  */
 public class GarantiaController implements Initializable {
+
     @FXML
     private TableView<Garantia> tablaGarantias;
     @FXML
@@ -36,7 +36,7 @@ public class GarantiaController implements Initializable {
     private TextField txtBuscar, txtIDGarantia, txtDuracion;
 
     @FXML
-    private ComboBox<Productos> cbxProductos;
+    private ComboBox<Producto> cbxProductos;
 
     @FXML
     private Button btnAnterior, btnSiguiente, btnNuevo, btnEditar, btnEliminar,
@@ -63,6 +63,34 @@ public class GarantiaController implements Initializable {
         principal.menu();
     }
 
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarColumnas();
@@ -81,13 +109,13 @@ public class GarantiaController implements Initializable {
         ArrayList<Garantia> garantias = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_ListarGarantias();");
+                    .prepareCall("call sp_listarGarantias();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
                 garantias.add(new Garantia(
-                        resultado.getInt("idGarantia"),
-                        resultado.getInt("idProducto"),
-                        resultado.getString("duracion")
+                        resultado.getInt("ID_GARANTIA"),
+                        resultado.getInt("ID_PRODUCTO"),
+                        resultado.getString("DURACION")
                 ));
             }
         } catch (SQLException ex) {
@@ -97,14 +125,14 @@ public class GarantiaController implements Initializable {
         return garantias;
     }
 
-    private ArrayList<Productos> listarProductos() {
-        ArrayList<Productos> productos = new ArrayList<>();
+    private ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
                     .prepareCall("call sp_listarProductos();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
-                productos.add(new Productos(
+                productos.add(new Producto(
                         resultado.getInt("ID"),
                         resultado.getString("NOMBRE"),
                         resultado.getString("DESCRIPCION"),
@@ -125,7 +153,7 @@ public class GarantiaController implements Initializable {
     }
 
     private void cargarProductos() {
-        ObservableList<Productos> listaProductos = FXCollections.observableArrayList(listarProductos());
+        ObservableList<Producto> listaProductos = FXCollections.observableArrayList(listarProductos());
         cbxProductos.setItems(listaProductos);
     }
 
@@ -133,15 +161,15 @@ public class GarantiaController implements Initializable {
         Garantia garantiaSeleccionada = tablaGarantias.getSelectionModel().getSelectedItem();
         if (garantiaSeleccionada != null) {
             txtIDGarantia.setText(String.valueOf(garantiaSeleccionada.getIdGarantia()));
-            
+
             // Seleccionar el producto correspondiente
-            for (Productos p : cbxProductos.getItems()) {
+            for (Producto p : cbxProductos.getItems()) {
                 if (p.getIdProducto() == garantiaSeleccionada.getIdProducto()) {
                     cbxProductos.setValue(p);
                     break;
                 }
             }
-            
+
             txtDuracion.setText(garantiaSeleccionada.getDuracion());
         }
     }
@@ -157,7 +185,7 @@ public class GarantiaController implements Initializable {
 
     private Garantia obtenerModeloGarantia() {
         int idGarantia = txtIDGarantia.getText().isEmpty() ? 0 : Integer.parseInt(txtIDGarantia.getText());
-        Productos productoSeleccionado = cbxProductos.getSelectionModel().getSelectedItem();
+        Producto productoSeleccionado = cbxProductos.getSelectionModel().getSelectedItem();
         String duracion = txtDuracion.getText();
 
         return new Garantia(
@@ -171,7 +199,7 @@ public class GarantiaController implements Initializable {
         modeloGarantia = obtenerModeloGarantia();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_AgregarGarantia(?,?);");
+                    .prepareCall("call sp_agregarGarantia(?,?);");
             enunciado.setInt(1, modeloGarantia.getIdProducto());
             enunciado.setString(2, modeloGarantia.getDuracion());
             enunciado.execute();
@@ -186,7 +214,7 @@ public class GarantiaController implements Initializable {
         modeloGarantia = obtenerModeloGarantia();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EditarGarantia(?,?,?);");
+                    .prepareCall("call sp_editarGarantia(?,?,?);");
             enunciado.setInt(1, modeloGarantia.getIdGarantia());
             enunciado.setInt(2, modeloGarantia.getIdProducto());
             enunciado.setString(3, modeloGarantia.getDuracion());
@@ -202,7 +230,7 @@ public class GarantiaController implements Initializable {
         modeloGarantia = tablaGarantias.getSelectionModel().getSelectedItem();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EliminarGarantia(?);");
+                    .prepareCall("call sp_eliminarGarantia(?);");
             enunciado.setInt(1, modeloGarantia.getIdGarantia());
             enunciado.execute();
             cargarTablaGarantias();
@@ -306,9 +334,9 @@ public class GarantiaController implements Initializable {
         String busqueda = txtBuscar.getText().toLowerCase();
         ArrayList<Garantia> resultadoBusqueda = new ArrayList<>();
         for (Garantia g : listaGarantias) {
-            if (String.valueOf(g.getIdGarantia()).contains(busqueda) ||
-                String.valueOf(g.getIdProducto()).contains(busqueda) ||
-                g.getDuracion().toLowerCase().contains(busqueda)) {
+            if (String.valueOf(g.getIdGarantia()).contains(busqueda)
+                    || String.valueOf(g.getIdProducto()).contains(busqueda)
+                    || g.getDuracion().toLowerCase().contains(busqueda)) {
                 resultadoBusqueda.add(g);
             }
         }
