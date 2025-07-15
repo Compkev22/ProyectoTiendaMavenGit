@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -34,6 +37,7 @@ import org.kevinvelasquez.model.Clientes;
  * @author Kevin
  */
 public class PedidosController implements Initializable {
+
     @FXML
     private TableView<Pedidos> tablaPedidos;
     @FXML
@@ -48,7 +52,8 @@ public class PedidosController implements Initializable {
     private ComboBox<Clientes> cbxClientes;
 
     @FXML
-    private TextField txtBuscar, txtIDPedido, txtTotal, txtDescuento;
+    private TextField txtBuscar, txtIDPedido, txtTotal, txtDescuento, txtEstadoPedido, txtEstadoPago,
+            txtMetodoPago, txtTipoEntrega, txtTiempoEstimado;
 
     @FXML
     private Spinner<Integer> spTiempoEstimado;
@@ -76,6 +81,34 @@ public class PedidosController implements Initializable {
 
     public void escenaMenuPrincipal() {
         principal.menu();
+    }
+
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
+    public void escenaPaginaEmpresa() {
+        principal.escenaEmpresa();
     }
 
     @Override
@@ -112,7 +145,7 @@ public class PedidosController implements Initializable {
         cbxEstadoPago.getItems().addAll("Pendiente", "Pagado", "Reembolsado", "Cancelado");
         cbxMetodoPago.getItems().addAll("Efectivo", "Tarjeta de crédito", "Tarjeta de débito", "Transferencia", "PayPal");
         cbxTipoEntrega.getItems().addAll("Domicilio", "Recogida en tienda", "Punto de entrega");
-        
+
         // Cargar clientes
         cargarClientes();
     }
@@ -130,7 +163,7 @@ public class PedidosController implements Initializable {
                         resultado.getString("APELLIDO"),
                         resultado.getString("TELEFONO"),
                         resultado.getString("DIRECCION"),
-                        resultado.getString("EMAIL"),
+                        resultado.getString("CORREO"),
                         resultado.getDate("FECHA_REGISTRO").toLocalDate()
                 ));
             }
@@ -177,7 +210,7 @@ public class PedidosController implements Initializable {
         Pedidos pedidoSeleccionado = tablaPedidos.getSelectionModel().getSelectedItem();
         if (pedidoSeleccionado != null) {
             txtIDPedido.setText(String.valueOf(pedidoSeleccionado.getIdPedido()));
-            
+
             // Seleccionar el cliente correspondiente
             for (Clientes c : cbxClientes.getItems()) {
                 if (c.getIdCliente() == pedidoSeleccionado.getIdCliente()) {
@@ -185,7 +218,7 @@ public class PedidosController implements Initializable {
                     break;
                 }
             }
-            
+
             dpFechaPedido.setValue(pedidoSeleccionado.getFechaPedido().toLocalDate());
             cbxEstadoPedido.setValue(pedidoSeleccionado.getEstadoPedido());
             cbxEstadoPago.setValue(pedidoSeleccionado.getEstadoPago());
@@ -209,8 +242,8 @@ public class PedidosController implements Initializable {
     private Pedidos obtenerModeloPedido() {
         int idPedido = txtIDPedido.getText().isEmpty() ? 0 : Integer.parseInt(txtIDPedido.getText());
         Clientes clienteSeleccionado = cbxClientes.getSelectionModel().getSelectedItem();
-        LocalDateTime fechaPedido = dpFechaPedido.getValue() != null ? 
-                LocalDateTime.of(dpFechaPedido.getValue(), LocalTime.now()) : null;
+        LocalDateTime fechaPedido = dpFechaPedido.getValue() != null
+                ? LocalDateTime.of(dpFechaPedido.getValue(), LocalTime.now()) : null;
         String estadoPedido = cbxEstadoPedido.getValue();
         String estadoPago = cbxEstadoPago.getValue();
         String metodoPago = cbxMetodoPago.getValue();
@@ -246,8 +279,8 @@ public class PedidosController implements Initializable {
             enunciado.setDouble(6, modeloPedido.getTotal());
             enunciado.setDouble(7, modeloPedido.getDescuento());
             enunciado.setInt(8, modeloPedido.getTiempoEstimado());
-            enunciado.setTimestamp(9, modeloPedido.getFechaPedido() != null ? 
-                    Timestamp.valueOf(modeloPedido.getFechaPedido()) : null);
+            enunciado.setTimestamp(9, modeloPedido.getFechaPedido() != null
+                    ? Timestamp.valueOf(modeloPedido.getFechaPedido()) : null);
             enunciado.execute();
             cargarTablaPedidos();
         } catch (SQLException ex) {
@@ -270,8 +303,8 @@ public class PedidosController implements Initializable {
             enunciado.setDouble(7, modeloPedido.getTotal());
             enunciado.setDouble(8, modeloPedido.getDescuento());
             enunciado.setInt(9, modeloPedido.getTiempoEstimado());
-            enunciado.setTimestamp(10, modeloPedido.getFechaPedido() != null ? 
-                    Timestamp.valueOf(modeloPedido.getFechaPedido()) : null);
+            enunciado.setTimestamp(10, modeloPedido.getFechaPedido() != null
+                    ? Timestamp.valueOf(modeloPedido.getFechaPedido()) : null);
             enunciado.execute();
             cargarTablaPedidos();
         } catch (SQLException ex) {
@@ -402,10 +435,10 @@ public class PedidosController implements Initializable {
         String busqueda = txtBuscar.getText().toLowerCase();
         ArrayList<Pedidos> resultadoBusqueda = new ArrayList<>();
         for (Pedidos p : listaPedidos) {
-            if (String.valueOf(p.getIdPedido()).contains(busqueda) ||
-                String.valueOf(p.getIdCliente()).contains(busqueda) ||
-                p.getEstadoPedido().toLowerCase().contains(busqueda) ||
-                p.getMetodoPago().toLowerCase().contains(busqueda)) {
+            if (String.valueOf(p.getIdPedido()).contains(busqueda)
+                    || String.valueOf(p.getIdCliente()).contains(busqueda)
+                    || p.getEstadoPedido().toLowerCase().contains(busqueda)
+                    || p.getMetodoPago().toLowerCase().contains(busqueda)) {
                 resultadoBusqueda.add(p);
             }
         }
@@ -414,5 +447,4 @@ public class PedidosController implements Initializable {
             tablaPedidos.getSelectionModel().selectFirst();
         }
     }
-}   
-
+}
