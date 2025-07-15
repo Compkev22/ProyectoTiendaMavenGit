@@ -1,4 +1,3 @@
-
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
@@ -19,11 +18,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinvelasquez.database.Conexion;
 import org.kevinvelasquez.model.Empresa;
+
 /**
  *
  * @author Kevin
  */
 public class EmpresaController implements Initializable {
+
     @FXML
     private TableView<Empresa> tablaEmpresa;
     @FXML
@@ -57,6 +58,34 @@ public class EmpresaController implements Initializable {
         principal.menu();
     }
 
+    public void escenaPaginaProductos() {
+        principal.escenaProductos();
+    }
+
+    public void escenaPaginaClientes() {
+        principal.escenaClientes();
+    }
+
+    public void escenaPaginaCategorias() {
+        principal.escenaCategorias();
+    }
+
+    public void escenaPaginaPedidos() {
+        principal.escenaPedidos();
+    }
+
+    public void escenaPaginaDetallePedido() {
+        principal.escenaDetallePedido();
+    }
+
+    public void escenaPaginaGarantias() {
+        principal.escenaGarantias();
+    }
+
+    public void escenaPaginaContacto() {
+        principal.escenaContacto();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarColumnas();
@@ -76,15 +105,15 @@ public class EmpresaController implements Initializable {
         ArrayList<Empresa> empresas = new ArrayList<>();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_ListarEmpresa();");
+                    .prepareCall("call sp_listarEmpresas();");
             ResultSet resultado = enunciado.executeQuery();
             while (resultado.next()) {
                 empresas.add(new Empresa(
-                        resultado.getInt("idEmpresa"),
-                        resultado.getString("nombre"),
-                        resultado.getString("direccion"),
-                        resultado.getString("telefono"),
-                        resultado.getString("horario")
+                        resultado.getInt("ID"),
+                        resultado.getString("NOMBRE"),
+                        resultado.getString("DIRECCION"),
+                        resultado.getString("TELEFONO"),
+                        resultado.getString("HORARIO")
                 ));
             }
         } catch (SQLException ex) {
@@ -134,7 +163,7 @@ public class EmpresaController implements Initializable {
         modeloEmpresa = obtenerModeloEmpresa();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_AgregarEmpresa(?,?,?,?);");
+                    .prepareCall("call sp_agregarEmpresa(?,?,?,?);");
             enunciado.setString(1, modeloEmpresa.getNombre());
             enunciado.setString(2, modeloEmpresa.getDireccion());
             enunciado.setString(3, modeloEmpresa.getTelefono());
@@ -151,7 +180,7 @@ public class EmpresaController implements Initializable {
         modeloEmpresa = obtenerModeloEmpresa();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EditarEmpresa(?,?,?,?,?);");
+                    .prepareCall("call sp_editarEmpresa(?,?,?,?,?);");
             enunciado.setInt(1, modeloEmpresa.getIdEmpresa());
             enunciado.setString(2, modeloEmpresa.getNombre());
             enunciado.setString(3, modeloEmpresa.getDireccion());
@@ -169,7 +198,7 @@ public class EmpresaController implements Initializable {
         modeloEmpresa = tablaEmpresa.getSelectionModel().getSelectedItem();
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
-                    .prepareCall("call sp_EliminarEmpresa(?);");
+                    .prepareCall("call sp_eliminarEmpresa(?);");
             enunciado.setInt(1, modeloEmpresa.getIdEmpresa());
             enunciado.execute();
             cargarTablaEmpresa();
@@ -277,9 +306,9 @@ public class EmpresaController implements Initializable {
         String busqueda = txtBuscar.getText().toLowerCase();
         ArrayList<Empresa> resultadoBusqueda = new ArrayList<>();
         for (Empresa e : listaEmpresas) {
-            if (e.getNombre().toLowerCase().contains(busqueda) ||
-                e.getDireccion().toLowerCase().contains(busqueda) ||
-                e.getTelefono().toLowerCase().contains(busqueda)) {
+            if (e.getNombre().toLowerCase().contains(busqueda)
+                    || e.getDireccion().toLowerCase().contains(busqueda)
+                    || e.getTelefono().toLowerCase().contains(busqueda)) {
                 resultadoBusqueda.add(e);
             }
         }
