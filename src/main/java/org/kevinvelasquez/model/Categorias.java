@@ -1,8 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.kevinvelasquez.model;
 
 /**
  *
- * @author Kevin
+ * @author Emilio
  */
 public class Categorias {
     private int idCategoria;
@@ -13,7 +17,7 @@ public class Categorias {
     public Categorias() {}
 
     public Categorias(int idCategoria, String nombreCategoria,
-        String descripcionCategoria, String tipoCategoria) {
+                     String descripcionCategoria, String tipoCategoria) {
         this.idCategoria = idCategoria;
         this.nombreCategoria = nombreCategoria;
         this.descripcionCategoria = descripcionCategoria;
@@ -55,5 +59,5 @@ public class Categorias {
     @Override
     public String toString() {
         return nombreCategoria;
-    }    
+    }
 }

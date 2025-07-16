@@ -1,11 +1,14 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.kevinvelasquez.model;
 
 import java.time.LocalDate;
 
 /**
  *
- * @author Kevin
+ * @author Emilio
  */
 public class Producto {
     private int idProducto;
@@ -19,7 +22,7 @@ public class Producto {
     private LocalDate ultimaActualizacion;
     private int stock;
 
-    // Constructor
+    // Constructor completo
     public Producto(int idProducto, String nombreProducto, String descripcionProducto, double precioActual,
                     double precioAnterior, String descuentoProducto, String categoriaProducto,
                     String codigoBarra, LocalDate ultimaActualizacion, int stock) {
@@ -35,6 +38,13 @@ public class Producto {
         this.stock = stock;
     }
 
+    // Constructor simplificado para carrito
+    public Producto(int idProducto, String nombreProducto, int stock) {
+        this.idProducto = idProducto;
+        this.nombreProducto = nombreProducto;
+        this.stock = stock;
+    }
+    
     public int getIdProducto() {
         return idProducto;
     }
@@ -115,5 +125,5 @@ public class Producto {
         this.stock = stock;
     }
     
-        
+    
 }

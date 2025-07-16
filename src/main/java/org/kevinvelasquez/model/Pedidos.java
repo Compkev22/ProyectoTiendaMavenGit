@@ -1,11 +1,14 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.kevinvelasquez.model;
 
 import java.time.LocalDateTime;
 
 /**
  *
- * @author Kevin
+ * @author Emilio
  */
 public class Pedidos {
     private int idPedido;
@@ -117,5 +120,5 @@ public class Pedidos {
         this.tiempoEstimado = tiempoEstimado;
     }
     
-        
+    
 }

@@ -1,11 +1,14 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.kevinvelasquez.model;
 
 import java.time.LocalDate;
 
 /**
  *
- * @author Kevin
+ * @author Emilio
  */
 public class Contacto {
     private int idContacto;
@@ -64,5 +67,5 @@ public class Contacto {
         this.fechaEnvio = fechaEnvio;
     }
     
-        
+    
 }
