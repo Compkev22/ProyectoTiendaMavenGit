@@ -15,8 +15,6 @@
          <font>
             <Font name="Arial Black" size="36.0" />
          </font></Label>
-      <Button layoutX="248.0" layoutY="164.0" mnemonicParsing="false" onAction="#escenaMenuPrincipal" prefHeight="73.0" prefWidth="104.0" text="Menu Principal" />
-      <Button layoutX="391.0" layoutY="14.0" mnemonicParsing="false" text="Acerca De" />
-      <Button layoutX="488.0" layoutY="14.0" mnemonicParsing="false" text="Sobre Nosotros" />
+      <Button layoutX="248.0" layoutY="164.0" mnemonicParsing="false" onAction="#vistaLogin" prefHeight="73.0" prefWidth="104.0" text="Iniciar" />
    </children>
 </AnchorPane>

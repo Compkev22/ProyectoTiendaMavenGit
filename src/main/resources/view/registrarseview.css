@@ -10,7 +10,7 @@
     -fx-background-color: linear-gradient(to bottom, #e8f5e9, #ffffff);
 }
 
-/* Panel blanco donde están los campos */
+/* Panel blanco central */
 .rectangle {
     -fx-fill: #ffffff;
     -fx-stroke: #A5D6A7;
@@ -18,15 +18,23 @@
     -fx-arc-height: 10;
 }
 
-/* Etiqueta principal "Inicio de Sesión" */
+/* Etiquetas */
 .label {
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
+    -fx-font-size: 13px;
     -fx-text-fill: #2E7D32;
     -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
 }
 
-/* TextField y PasswordField */
+/* Título principal */
+.label[text="Zona de Registro"] {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1B5E20;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* Campos de entrada */
 .text-field,
 .password-field {
     -fx-background-color: #ffffff;
@@ -39,13 +47,12 @@
     -fx-text-fill: #2e2e2e;
 }
 
-/* Placeholder (prompt text) */
 .text-field:focused,
 .password-field:focused {
     -fx-border-color: #43A047;
 }
 
-/* Botones */
+/* Botón "Registrarse" */
 .button {
     -fx-background-color: #43A047;
     -fx-text-fill: white;
@@ -69,26 +76,11 @@
     -fx-text-fill: #eeeeee;
 }
 
-/* Botón especial "Registrarse" */
-.button:focused {
-    -fx-border-color: #00C853;
-}
-
-/* Texto "¿No tienes cuenta?" */
-.label:disabled {
-    -fx-text-fill: #555;
-    -fx-font-size: 12px;
-}
-
-/* Imágenes como íconos (usuario y candado) */
-.image-view {
-    -fx-effect: dropshadow(one-pass-box, rgba(102,187,106,0.3), 2, 0, 1, 1);
-}
-
-/* Ajuste del botón "Atrás" */
+/* Botón "Atrás" estilo secundario */
 .button[text="Atras"] {
     -fx-background-color: transparent;
     -fx-text-fill: #2E7D32;
     -fx-font-weight: normal;
     -fx-border-color: transparent;
+    -fx-cursor: hand;
 }
