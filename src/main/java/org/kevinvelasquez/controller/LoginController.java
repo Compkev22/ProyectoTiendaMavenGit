@@ -5,12 +5,16 @@
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.kevinvelasquez.database.Conexion;
 import org.kevinvelasquez.system.Main;
 
 /**
@@ -19,70 +23,74 @@ import org.kevinvelasquez.system.Main;
  * @author Emilio
  */
 public class LoginController implements Initializable {
-   @FXML
-    private TextField txtUsuario;
+    private Main principal;   
+    @FXML private TextField txtNombreUsuario;
+    @FXML private PasswordField txtContraseña;
     
-    @FXML
-    private PasswordField pswContraseña;
-    
-    private Main principal;
-
-    public void setPrincipal(Main principal) {
-        this.principal = principal;
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }
 
     public Main getPrincipal() {
         return principal;
     }
 
-    public void escenaVolverMenuPrincipal() {
+    public void setPrincipal(Main principal) {
+        this.principal = principal;
+    }
+    
+    public void escenaMenuPrincipal(){
         principal.menu();
     }
-
-    public void escenaRegistrarse() {
+    
+    public void escenaPaginaInicio(){
+        principal.escenaInicio();
+    }
+    
+    public void escenaRegistrarse(){
         principal.escenaRegistrar();
-    }
-
-    public void escenaIngresar() {
-        principal.escenaProductos();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
     }
     
     @FXML
-    private void iniciarSesion() {
-        String usuario = txtUsuario.getText();
-        String contraseña = pswContraseña.getText();
-        
-        
-        final String UsuarioValido = "1";
-        final String ContraseñaValida = "1";
-        
-        if (UsuarioValido.equals(usuario) && ContraseñaValida.equals(contraseña)) {
-            mostrarAlerta("Inicio de sesion exitoso", "Bienvenido al sistema",
-                    Alert.AlertType.INFORMATION);
-            principal.menu();
-        } else {
-            mostrarAlerta("Credenciales incorrectas", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
-            pswContraseña.clear();
-            txtUsuario.requestFocus();
+    public void verificarCredenciales() {
+        String usuario = txtNombreUsuario.getText();
+        String contraseña = txtContraseña.getText();
+
+        if (usuario.isEmpty() || contraseña.isEmpty()) {
+            mostrarAlerta("Campos Vacíos", "Por favor ingresa usuario y contraseña.");
+            return;
+        }
+
+        try {
+            Connection conn = Conexion.getInstancia().getConexion();
+            String query = "select * from RegistroUsuarios where nombreUsuario = ? and contraseñaUsuario = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, usuario);
+            stmt.setString(2, contraseña);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                mostrarAlerta("Acceso Concedido", "Usuario y Contraseña Correctos.");
+                escenaMenuPrincipal();
+            } else {
+                mostrarAlerta("Acceso Denegado", "Usuario o Contraseña Incorrectos.");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "Error al intentar conectar con la base de datos.");
         }
     }
-    
-    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
-        Alert alerta = new Alert(tipo);
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
     }
-    
-    @FXML
-    private void salir() {
-        System.exit(0);
-    }
-
 }
+
