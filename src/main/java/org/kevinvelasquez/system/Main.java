@@ -4,14 +4,11 @@ package org.kevinvelasquez.system;
  * @author Diego G
  */
 import java.io.InputStream;
-import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.kevinvelasquez.controller.CategoriasController;
 import org.kevinvelasquez.controller.ClientesController;
@@ -19,12 +16,14 @@ import org.kevinvelasquez.controller.ContactoController;
 import org.kevinvelasquez.controller.DetallePedidoController;
 import org.kevinvelasquez.controller.EmpresaController;
 import org.kevinvelasquez.controller.GarantiaController;
+import org.kevinvelasquez.controller.GestionController;
 import org.kevinvelasquez.controller.InicioController;
 import org.kevinvelasquez.controller.LoginController;
-import org.kevinvelasquez.controller.MenuPrincipalController;
 import org.kevinvelasquez.controller.PedidosController;
 import org.kevinvelasquez.controller.ProductosController;
-import org.kevinvelasquez.controller.RegistrarController;
+import org.kevinvelasquez.controller.RegistrarseController;
+import org.kevinvelasquez.controller.PaginaPrincipalController;
+import org.kevinvelasquez.controller.ProductosVentasController;
 
 public class Main extends Application{
     private static String URL = "/view/";
@@ -77,7 +76,7 @@ public class Main extends Application{
 
     public void escenaInicio() {
         try {
-            InicioController inicio = (InicioController) cambiarEscena("InicioView.fxml", 800, 600);
+            InicioController inicio = (InicioController) cambiarEscena("InicioView.fxml", 600, 400);
             inicio.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de inicio");
@@ -87,7 +86,7 @@ public class Main extends Application{
     
     public void escenaLogin() {
         try {
-            LoginController login = (LoginController) cambiarEscena("LoginView.fxml", 800, 600);
+            LoginController login = (LoginController) cambiarEscena("LoginView.fxml", 520, 550);
             login.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de Login");
@@ -97,7 +96,7 @@ public class Main extends Application{
     
     public void escenaRegistrar() {
         try {
-            RegistrarController registrar = (RegistrarController) cambiarEscena("RegistrarView.fxml", 800, 600);
+            RegistrarseController registrar = (RegistrarseController) cambiarEscena("RegistrarseView.fxml", 520, 550);
             registrar.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de Registrarse");
@@ -107,7 +106,7 @@ public class Main extends Application{
     
     public void menu() {
         try {
-            MenuPrincipalController mp = (MenuPrincipalController) cambiarEscena("MenuPrincipalView.fxml", 1291, 933);
+            PaginaPrincipalController mp = (PaginaPrincipalController) cambiarEscena("PaginaPrincipalView.fxml", 1280, 820);
             mp.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambio a la Pagina Menu Principal");
@@ -117,7 +116,7 @@ public class Main extends Application{
     
     public void escenaProductos() {
         try {
-            ProductosController productos = (ProductosController) cambiarEscena("ProductosView.fxml", 800, 600);
+            ProductosController productos = (ProductosController) cambiarEscena("ProductosView.fxml", 1180, 820);
             productos.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de productos");
@@ -127,7 +126,7 @@ public class Main extends Application{
     
     public void escenaClientes() {
         try {
-            ClientesController clientes = (ClientesController) cambiarEscena("ClientesView.fxml", 800, 600);
+            ClientesController clientes = (ClientesController) cambiarEscena("ClientesView.fxml", 1180, 820);
             clientes.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de clientes");
@@ -137,7 +136,7 @@ public class Main extends Application{
 
     public void escenaPedidos() {
         try {
-            PedidosController pedidos = (PedidosController) cambiarEscena("PedidosView.fxml", 800, 600);
+            PedidosController pedidos = (PedidosController) cambiarEscena("PedidosView.fxml", 1180, 820);
             pedidos.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de pedidos");
@@ -147,7 +146,7 @@ public class Main extends Application{
 
     public void escenaDetallePedido() {
         try {
-            DetallePedidoController detalle = (DetallePedidoController) cambiarEscena("DetallePedidoView.fxml", 800, 600);
+            DetallePedidoController detalle = (DetallePedidoController) cambiarEscena("DetallePedidoView.fxml", 1180, 820);
             detalle.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de detalle de pedido");
@@ -157,7 +156,7 @@ public class Main extends Application{
 
     public void escenaCategorias() {
         try {
-            CategoriasController categorias = (CategoriasController) cambiarEscena("CategoriasView.fxml", 800, 600);
+            CategoriasController categorias = (CategoriasController) cambiarEscena("CategoriasView.fxml", 1180, 820);
             categorias.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de categorías");
@@ -167,7 +166,7 @@ public class Main extends Application{
 
     public void escenaGarantias() {
         try {
-            GarantiaController garantias = (GarantiaController) cambiarEscena("GarantiaView.fxml", 800, 600);
+            GarantiaController garantias = (GarantiaController) cambiarEscena("GarantiaView.fxml", 1180, 820);
             garantias.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de garantías");
@@ -177,7 +176,7 @@ public class Main extends Application{
         
     public void escenaContacto() {
         try {
-            ContactoController contacto = (ContactoController) cambiarEscena("ContactoView.fxml", 800, 600);
+            ContactoController contacto = (ContactoController) cambiarEscena("ContactoView.fxml", 1180, 820);
             contacto.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de contacto");
@@ -187,12 +186,34 @@ public class Main extends Application{
 
     public void escenaEmpresa() {
         try {
-            EmpresaController empresa = (EmpresaController) cambiarEscena("EmpresaView.fxml", 800, 600);
+            EmpresaController empresa = (EmpresaController) cambiarEscena("EmpresaView.fxml", 1180, 820);
             empresa.setPrincipal(this);
         } catch (Exception ex) {
             System.out.println("Error al cambiar a la escena de empresa");
             ex.printStackTrace();
         }
     }
+    
+    public void escenaProductosVentas(){
+        try {
+            ProductosVentasController pd = (ProductosVentasController) cambiarEscena("ProductosVentasView.fxml", 1280, 820);
+            pd.setPrincipal(this);
+        } catch (Exception ex) {
+            System.out.println("Error al cambiar a la escena de ventas");
+            ex.printStackTrace();
+        }
+    }
+    
+    public void escenaGestion(){
+        try {
+            GestionController gc = (GestionController) cambiarEscena("GestionView.fxml", 1280, 820);
+            gc.setPrincipal(this);
+        } catch (Exception ex) {
+            System.out.println("Error al cambiar a la escena de gestion");
+            ex.printStackTrace();
+        }
+    }
+    
+    
     
 }
