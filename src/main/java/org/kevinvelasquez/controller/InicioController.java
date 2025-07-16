@@ -39,12 +39,8 @@ public class InicioController implements Initializable {
     }    
     
     @FXML
-    private void vistaProducts() {
-        principal.escenaProductos();
+    private void vistaLogin() {
+        principal.escenaLogin();
     }
     
-    @FXML
-    private void escenaMenuPrincipal() {
-        principal.menu();
-    }
 }

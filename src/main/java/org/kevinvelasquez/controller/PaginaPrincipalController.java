@@ -1,22 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package org.kevinvelasquez.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import org.kevinvelasquez.system.Main;
 
 /**
+ * FXML Controller class
  *
- * @author Kevin
+ * @author Emilio
  */
-public class MenuPrincipalController implements Initializable  {
+public class PaginaPrincipalController implements Initializable {
   
     private Main principal;
 
@@ -67,5 +65,13 @@ public class MenuPrincipalController implements Initializable  {
     
     public void escenaPaginaEmpresa() {
         principal.escenaEmpresa();
+    }
+    
+    public void escenaProductosVentas(){
+        principal.escenaProductosVentas();
+    }
+    
+    public void escenaGestion(){
+        principal.escenaGestion();
     }
 }

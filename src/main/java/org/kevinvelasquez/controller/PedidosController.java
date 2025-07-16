@@ -294,17 +294,17 @@ public class PedidosController implements Initializable {
         try {
             CallableStatement enunciado = Conexion.getInstancia().getConexion()
                     .prepareCall("call sp_editarPedido(?,?,?,?,?,?,?,?,?,?);");
-            enunciado.setInt(1, modeloPedido.getIdPedido());
-            enunciado.setInt(2, modeloPedido.getIdCliente());
-            enunciado.setString(3, modeloPedido.getEstadoPedido());
-            enunciado.setString(4, modeloPedido.getEstadoPago());
-            enunciado.setString(5, modeloPedido.getMetodoPago());
-            enunciado.setString(6, modeloPedido.getTipoEntrega());
-            enunciado.setDouble(7, modeloPedido.getTotal());
-            enunciado.setDouble(8, modeloPedido.getDescuento());
-            enunciado.setInt(9, modeloPedido.getTiempoEstimado());
-            enunciado.setTimestamp(10, modeloPedido.getFechaPedido() != null
-                    ? Timestamp.valueOf(modeloPedido.getFechaPedido()) : null);
+                        enunciado.setInt(1, modeloPedido.getIdPedido());
+                        enunciado.setInt(2, modeloPedido.getIdCliente());
+                        enunciado.setTimestamp(3, modeloPedido.getFechaPedido() != null
+                                ? Timestamp.valueOf(modeloPedido.getFechaPedido()) : null); // Ahora está en la posición correcta
+                        enunciado.setString(4, modeloPedido.getEstadoPedido());
+                        enunciado.setString(5, modeloPedido.getEstadoPago());
+                        enunciado.setString(6, modeloPedido.getMetodoPago());
+                        enunciado.setString(7, modeloPedido.getTipoEntrega());
+                        enunciado.setDouble(8, modeloPedido.getTotal());
+                        enunciado.setDouble(9, modeloPedido.getDescuento());
+                        enunciado.setInt(10, modeloPedido.getTiempoEstimado());
             enunciado.execute();
             cargarTablaPedidos();
         } catch (SQLException ex) {
