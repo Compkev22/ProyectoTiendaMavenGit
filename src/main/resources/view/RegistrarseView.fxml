@@ -14,19 +14,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="520.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.RegistrarseController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="520.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.RegistrarseController">
     <stylesheets>
         <URL value="@registrarseview.css" />
     </stylesheets>
    <children>
       <ImageView fitHeight="572.0" fitWidth="520.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/org/kevinvelasquez/image/Fondo1.jpg" />
+            <Image url="@../org/kevinvelasquez/image/Fondo1.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="572.0" fitWidth="520.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/org/kevinvelasquez/image/Fondo1.jpg" />
+            <Image url="@../org/kevinvelasquez/image/Fondo1.jpg" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="460.0" layoutX="27.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="466.0" />
@@ -71,5 +71,6 @@
       <Button layoutX="377.0" layoutY="443.0" mnemonicParsing="false" onAction="#registrarNuevoUsuario" text="Registrarse" />
       <Button layoutX="44.0" layoutY="42.0" mnemonicParsing="false" onAction="#escenaInicioSesion" text="Atras" />
       <Label layoutX="215.0" layoutY="46.0" text="Zona de Registro" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="168.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

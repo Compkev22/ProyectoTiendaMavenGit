@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.DetallePedidoController">
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.DetallePedidoController">
     <stylesheets>
         <URL value="@detallepedidoview.css" />
     </stylesheets>
@@ -29,7 +29,7 @@
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../java/org/kevinvelasquez/image/Regresar.png" />
+                        <Image url="@../org/kevinvelasquez/image/Regresar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,7 +57,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Productos.png" />
+                              <Image url="@../org/kevinvelasquez/image/Productos.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -66,7 +66,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Categorias.png" />
+                              <Image url="@../org/kevinvelasquez/image/Categorias.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -75,7 +75,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Clientes.png" />
+                              <Image url="@../org/kevinvelasquez/image/Clientes.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -84,7 +84,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Contacto.png" />
+                              <Image url="@../org/kevinvelasquez/image/Contacto.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -93,7 +93,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Detalles%20Pedido.png" />
+                              <Image url="@../org/kevinvelasquez/image/Detalles%20Pedido.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -102,7 +102,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Empresas.png" />
+                              <Image url="@../org/kevinvelasquez/image/Empresas.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -111,7 +111,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Garantia.png" />
+                              <Image url="@../org/kevinvelasquez/image/Garantia.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -120,7 +120,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Pedidos.png" />
+                              <Image url="@../org/kevinvelasquez/image/Pedidos.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -166,7 +166,6 @@
          </rowConstraints>
          <children>
             <TextField fx:id="txtIDDetalle" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtPrecioUnitario" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="ID" textFill="WHITE" />
             <Label text="Pedido" textFill="WHITE" GridPane.rowIndex="1" />
@@ -175,7 +174,7 @@
             <Label text="Precio Unitario" textFill="WHITE" GridPane.rowIndex="4" />
             <ComboBox fx:id="cbxPedidos" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="cbxProductos" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Spinner fx:id="spCantidad" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Spinner fx:id="spCantidad" prefHeight="35.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <GridPane layoutX="30.0" layoutY="197.0" prefHeight="223.0" prefWidth="200.0">
