@@ -1,0 +1,86 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+/* Fondo general del AnchorPane */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #e8f5e9, #ffffff);
+}
+
+/* Panel blanco central */
+.rectangle {
+    -fx-fill: #ffffff;
+    -fx-stroke: #A5D6A7;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+}
+
+/* Etiquetas */
+.label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2E7D32;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+}
+
+/* Título principal */
+.label[text="Zona de Registro"] {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1B5E20;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* Campos de entrada */
+.text-field,
+.password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #66BB6A;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #2e2e2e;
+}
+
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: #43A047;
+}
+
+/* Botón "Registrarse" */
+.button {
+    -fx-background-color: #43A047;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #66BB6A;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 2, 2);
+}
+
+.button:hover {
+    -fx-background-color: #388E3C;
+}
+
+.button:disabled {
+    -fx-background-color: #C8E6C9;
+    -fx-text-fill: #eeeeee;
+}
+
+/* Botón "Atrás" estilo secundario */
+.button[text="Atras"] {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: normal;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}

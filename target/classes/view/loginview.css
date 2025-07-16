@@ -1,0 +1,94 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+/* Fondo general del AnchorPane */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #e8f5e9, #ffffff);
+}
+
+/* Panel blanco donde están los campos */
+.rectangle {
+    -fx-fill: #ffffff;
+    -fx-stroke: #A5D6A7;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+}
+
+/* Etiqueta principal "Inicio de Sesión" */
+.label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2E7D32;
+    -fx-font-family: "Segoe UI";
+}
+
+/* TextField y PasswordField */
+.text-field,
+.password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #66BB6A;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #2e2e2e;
+}
+
+/* Placeholder (prompt text) */
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: #43A047;
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #43A047;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #66BB6A;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 2, 2);
+}
+
+.button:hover {
+    -fx-background-color: #388E3C;
+}
+
+.button:disabled {
+    -fx-background-color: #C8E6C9;
+    -fx-text-fill: #eeeeee;
+}
+
+/* Botón especial "Registrarse" */
+.button:focused {
+    -fx-border-color: #00C853;
+}
+
+/* Texto "¿No tienes cuenta?" */
+.label:disabled {
+    -fx-text-fill: #555;
+    -fx-font-size: 12px;
+}
+
+/* Imágenes como íconos (usuario y candado) */
+.image-view {
+    -fx-effect: dropshadow(one-pass-box, rgba(102,187,106,0.3), 2, 0, 1, 1);
+}
+
+/* Ajuste del botón "Atrás" */
+.button[text="Atras"] {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: normal;
+    -fx-border-color: transparent;
+}

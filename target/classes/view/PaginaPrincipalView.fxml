@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.PaginaPrincipalController">
+    <stylesheets>
+        <URL value="@paginaprincipalview.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane prefHeight="820.0" prefWidth="207.0" styleClass="anchor-pane-barra">
+         <children>
+            <GridPane layoutX="35.0" layoutY="149.0" prefHeight="207.0" prefWidth="135.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" prefWidth="135.0" text="Principal">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Principal.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaProductosVentas" prefWidth="135.0" text="Productos" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/ProductosVenta.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaGestion" prefHeight="50.0" prefWidth="135.0" text="Gestion" GridPane.rowIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Gestion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="127.0" prefWidth="1280.0" styleClass="anchor-pane-superior">
+         <children>
+            <Label layoutX="274.0" layoutY="50.0" text="Todo en electrónica, en un solo clic" />
+            <Line endX="414.0" layoutX="225.0" layoutY="76.0" startX="50.0" stroke="WHITE" />
+            <Label layoutX="274.0" layoutY="23.0" text="Techshop">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="677.0" layoutY="347.0" prefHeight="102.0" prefWidth="224.0" text="PAGINA PRINCIPAL" />
+   </children>
+</AnchorPane>

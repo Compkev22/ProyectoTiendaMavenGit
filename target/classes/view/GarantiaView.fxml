@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.GarantiaController">
+    <stylesheets>
+        <URL value="@garantiaview.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane prefHeight="820.0" prefWidth="239.0">
+         <children>
+            <Button layoutX="20.0" layoutY="721.0" mnemonicParsing="false" onAction="#escenaMenuPrincipal">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../java/org/kevinvelasquez/image/Regresar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="120.0" prefWidth="1180.0">
+         <children>
+            <GridPane layoutX="5.0" layoutY="15.0" prefHeight="90.0" prefWidth="1170.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaProductos" prefHeight="60.0" prefWidth="140.0" text="Productos">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Productos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="escenaPaginaCategorias" mnemonicParsing="false" prefHeight="60.0" prefWidth="144.0" text="Categorias" GridPane.columnIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Categorias.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaClientes" prefHeight="60.0" prefWidth="135.0" text="Clientes" GridPane.columnIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Clientes.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaContacto" prefHeight="60.0" prefWidth="135.0" text="Contacto" GridPane.columnIndex="3">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Contacto.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaDetallePedido" prefHeight="60.0" prefWidth="135.0" text="Detalles" GridPane.columnIndex="4">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Detalles%20Pedido.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaEmpresa" prefHeight="60.0" prefWidth="135.0" text="Empresas" GridPane.columnIndex="5">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Empresas.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="135.0" text="Garantias" GridPane.columnIndex="6">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Garantia.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#escenaPaginaPedidos" prefHeight="60.0" prefWidth="135.0" text="Pedidos" GridPane.columnIndex="7">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../java/org/kevinvelasquez/image/Pedidos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="6.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <BorderPane layoutX="240.0" layoutY="120.0" prefHeight="350.0" prefWidth="930.0">
+         <center>
+            <Pane prefHeight="700.0" prefWidth="891.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tablaGarantias" prefHeight="350.0" prefWidth="930.0">
+                     <columns>
+                        <TableColumn fx:id="colIDGarantia" prefWidth="182.0" text="ID" />
+                        <TableColumn fx:id="colIDProducto" prefWidth="187.0" text="Producto" />
+                        <TableColumn fx:id="colDuracion" minWidth="90.0" prefWidth="561.0" text="Duracion" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+      <GridPane layoutX="274.0" layoutY="551.0" prefHeight="205.0" prefWidth="814.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="0.0" prefWidth="85.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="15.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="0.0" prefWidth="85.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="txtIDGarantia" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtDuracion" prefHeight="25.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="ID" textFill="WHITE" />
+            <Label text="Producto" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label prefWidth="147.0" text="Duracion" textFill="WHITE" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cbxProductos" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="30.0" layoutY="197.0" prefHeight="223.0" prefWidth="200.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAnterior" mnemonicParsing="false" onAction="#btnAnteriorAction" text="&lt;&lt;" />
+            <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#btnSiguienteAction" text="&gt;&gt;" GridPane.columnIndex="2" />
+            <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#btnNuevoAction" prefHeight="35.0" prefWidth="90.0" styleClass="button-accion-pequeno" text="Agregar" GridPane.rowIndex="1">
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#btnEliminarAction" prefHeight="35.0" prefWidth="90.0" styleClass="button-accion-pequeno" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#btnEditarAction" prefHeight="35.0" prefWidth="90.0" styleClass="button-accion-pequeno" text="Editar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="25.0" layoutY="511.0" prefHeight="30.0" prefWidth="221.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarGarantia" text="Buscar" />
+            <TextField fx:id="txtBuscar" onAction="#buscarGarantia" prefHeight="35.0" prefWidth="225.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
