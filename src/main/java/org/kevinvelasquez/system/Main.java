@@ -15,6 +15,7 @@ import org.kevinvelasquez.controller.ClientesController;
 import org.kevinvelasquez.controller.ContactoController;
 import org.kevinvelasquez.controller.DetallePedidoController;
 import org.kevinvelasquez.controller.EmpresaController;
+import org.kevinvelasquez.controller.FacturasController;
 import org.kevinvelasquez.controller.GarantiaController;
 import org.kevinvelasquez.controller.GestionController;
 import org.kevinvelasquez.controller.InicioController;
@@ -214,6 +215,14 @@ public class Main extends Application{
         }
     }
     
-    
+    public void escenaFacturas(){
+        try {
+            FacturasController fc = (FacturasController) cambiarEscena("FacturasView.fxml", 1280, 820);
+            fc.setPrincipal(this);
+        } catch (Exception ex) {
+            System.out.println("Error al cambiar a la escena de facturas");
+            ex.printStackTrace();
+        }
+    }
     
 }
