@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@productosview.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.ProductosController">
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@productosview.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.ProductosController">
    <children>
       <AnchorPane prefHeight="820.0" prefWidth="239.0">
          <children>

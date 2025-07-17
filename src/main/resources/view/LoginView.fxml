@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="520.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="520.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinvelasquez.controller.LoginController">
     <stylesheets>
         <URL value="@loginview.css" />
     </stylesheets>
@@ -32,8 +32,7 @@
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="110.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../org/kevinvelasquez/image/avatar.png" />
-         </image>
-      </ImageView>
+         </image></ImageView>
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="110.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../org/kevinvelasquez/image/cerrar.png" />
@@ -43,6 +42,10 @@
       <Label layoutX="190.0" layoutY="386.0" prefHeight="24.0" prefWidth="142.0" text="¿No tienes cuenta?" />
       <Button layoutX="209.0" layoutY="416.0" mnemonicParsing="false" onAction="#escenaRegistrarse" text="Registrarse" />
       <Button layoutX="42.0" layoutY="50.0" mnemonicParsing="false" onAction="#escenaPaginaInicio" text="Atras" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="184.0" fitWidth="195.0" layoutX="168.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../org/kevinvelasquez/image/logo-techshop.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

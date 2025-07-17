@@ -11,7 +11,7 @@
         <URL value="@inicioview.css" />
     </stylesheets>
    <children>
-      <Label layoutX="172.0" layoutY="76.0" text="Pagina Inicio">
+      <Label layoutX="191.0" layoutY="72.0" text="Pagina Inicio">
          <font>
             <Font name="Arial Black" size="36.0" />
          </font></Label>

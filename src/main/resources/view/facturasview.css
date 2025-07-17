@@ -10,7 +10,15 @@
     -fx-background-color: linear-gradient(to bottom, #f1f8e9, #ffffff);
 }
 
-/* Botones del menú lateral */
+/* Barra lateral (AnchorPane) */
+.anchor-pane-barra {
+    -fx-background-color: #C8E6C9;
+    -fx-border-color: #AED581;
+    -fx-border-width: 0 0 1px 0;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.05), 3, 0, 0, 1);
+}
+
+/* Estilo para los botones del menú lateral */
 .button {
     -fx-background-color: #A5D6A7;
     -fx-text-fill: #1B5E20;
@@ -24,15 +32,17 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 2, 2);
 }
 
+/* Hover effect para los botones */
 .button:hover {
     -fx-background-color: #81C784;
 }
 
+/* Estilo cuando el botón está enfocado */
 .button:focused {
     -fx-border-color: #388E3C;
 }
 
-/* Iconos dentro de botones */
+/* Iconos dentro de los botones */
 .image-view {
     -fx-effect: dropshadow(one-pass-box, rgba(102,187,106,0.3), 2, 0, 1, 1);
 }
@@ -43,19 +53,13 @@
     -fx-text-fill: #2E7D32;
 }
 
-/* Título principal */
-.label[text="PAGINA PRINCIPAL"] {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-/* Título superior "Techshop" */
+/* Estilo para el título principal "Techshop" */
 .label[text="Techshop"] {
     -fx-font-size: 26px;
     -fx-font-weight: bold;
 }
 
-/* Subtítulo */
+/* Estilo para el subtítulo "Todo en electrónica, en un solo clic" */
 .label[text="Todo en electrónica, en un solo clic"] {
     -fx-font-size: 14px;
 }
@@ -65,19 +69,12 @@
     -fx-stroke: #A5D6A7;
     -fx-stroke-width: 1.5px;
 }
-/* Estilo para los paneles de navegación laterales o superiores */
-.anchor-pane-barra {
-    -fx-background-color: #C8E6C9;
-    -fx-border-color: #AED581;
-    -fx-border-width: 0 0 1px 0; /* línea inferior para separar */
-    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.05), 3, 0, 0, 1);
-}
 
 /* Barra superior tipo encabezado */
 .anchor-pane-superior {
     -fx-background-color: linear-gradient(to right, #A5D6A7, #E8F5E9);
     -fx-border-color: #81C784;
-    -fx-border-width: 0 0 2px 0; /* borde inferior */
+    -fx-border-width: 0 0 2px 0;
     -fx-padding: 10 20;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.08), 5, 0, 0, 2);
 }
@@ -105,4 +102,26 @@
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI Semibold";
+}
+
+/* Campos de texto */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #66BB6A;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #2e2e2e;
+}
+
+/* DatePicker */
+.date-picker {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-size: 13px;
+    -fx-border-color: #66BB6A;
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #ffffff;
 }
