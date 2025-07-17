@@ -29,7 +29,7 @@
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../java/org/kevinvelasquez/image/Regresar.png" />
+                        <Image url="@../org/kevinvelasquez/image/Regresar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,7 +57,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Productos.png" />
+                              <Image url="@../org/kevinvelasquez/image/Productos.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -66,7 +66,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Categorias.png" />
+                              <Image url="@../org/kevinvelasquez/image/Categorias.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -75,7 +75,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Clientes.png" />
+                              <Image url="@../org/kevinvelasquez/image/Clientes.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -84,7 +84,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Contacto.png" />
+                              <Image url="@../org/kevinvelasquez/image/Contacto.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -93,7 +93,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Detalles%20Pedido.png" />
+                              <Image url="@../org/kevinvelasquez/image/Detalles%20Pedido.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -102,7 +102,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Empresas.png" />
+                              <Image url="@../org/kevinvelasquez/image/Empresas.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -111,7 +111,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Garantia.png" />
+                              <Image url="@../org/kevinvelasquez/image/Garantia.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -120,7 +120,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../java/org/kevinvelasquez/image/Pedidos.png" />
+                              <Image url="@../org/kevinvelasquez/image/Pedidos.png" />
                            </image>
                         </ImageView>
                      </graphic>
