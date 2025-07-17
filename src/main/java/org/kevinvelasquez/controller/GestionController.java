@@ -55,6 +55,10 @@ public class GestionController implements Initializable {
      principal.escenaProductos();
     }
     
+    public void escenaFacturas(){
+        principal.escenaFacturas();
+    }
+    
     @FXML
     public void verificarCredenciales() {
         String usuario = txtUsuario.getText().trim();

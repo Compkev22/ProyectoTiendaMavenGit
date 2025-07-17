@@ -74,4 +74,8 @@ public class PaginaPrincipalController implements Initializable {
     public void escenaGestion(){
         principal.escenaGestion();
     }
+    
+    public void escenaFacturas(){
+        principal.escenaFacturas();
+    }
 }

@@ -16,6 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -66,6 +68,10 @@ public class ProductosVentasController implements Initializable {
         principal.escenaGestion();
     }
     
+    public void escenaFacturas(){
+        principal.escenaFacturas();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         configurarTablas();
@@ -80,7 +86,7 @@ public class ProductosVentasController implements Initializable {
 
         colIDCarrito.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
         colNombreCarrito.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
-        colCantidadCarrito.setCellValueFactory(new PropertyValueFactory<>("stock")); // Aquí usamos 'stock' como cantidad
+        colCantidadCarrito.setCellValueFactory(new PropertyValueFactory<>("stock"));
     }
 
     private void cargarProductos() {
@@ -148,7 +154,7 @@ public class ProductosVentasController implements Initializable {
                 .findFirst();
 
             if (enCarrito.isPresent()) {
-                enCarrito.get().setStock(enCarrito.get().getStock() + 1); // usamos stock como cantidad en carrito
+                enCarrito.get().setStock(enCarrito.get().getStock() + 1); 
                 tablaCarrito.refresh();
             } else {
                 carrito.add(new Producto(producto.getIdProducto(), producto.getNombreProducto(), 1));
@@ -166,17 +172,86 @@ public class ProductosVentasController implements Initializable {
     @FXML
     private void comprarProductos() {
         for (Producto item : carrito) {
+            Producto disponible = buscarProductoPorID(item.getIdProducto());
+            if (disponible != null && item.getStock() > disponible.getStock()) {
+                mostrarAlerta("Error de compra", "No puedes comprar más de lo disponible en stock.\n" +
+                        "Producto: " + disponible.getNombreProducto() + "\n" +
+                        "Stock disponible: " + disponible.getStock() + "\n" +
+                        "Cantidad en carrito: " + item.getStock());
+                return;
+            }
+        }
+
+        for (Producto item : carrito) {
             try {
                 CallableStatement stmt = Conexion.getInstancia().getConexion()
                     .prepareCall("call sp_venderProducto(?, ?)");
                 stmt.setInt(1, item.getIdProducto());
-                stmt.setInt(2, item.getStock()); // cantidad comprada
+                stmt.setInt(2, item.getStock());
                 stmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+
         carrito.clear();
-        cargarProductos(); // recarga con stock actualizado
+        cargarProductos();
+    }
+    
+    @FXML
+    private void eliminarProducto() {
+        String idTexto = txtIDManual.getText();
+        if (!idTexto.isEmpty()) {
+            try {
+                int id = Integer.parseInt(idTexto);
+                eliminarDelCarritoPorID(id);
+            } catch (NumberFormatException e) {
+                System.out.println("ID inválido.");
+            }
+        } else {
+            // Eliminar por selección
+            Producto seleccionado = tablaCarrito.getSelectionModel().getSelectedItem();
+            if (seleccionado != null) {
+                eliminarDelCarrito(seleccionado);
+            } else {
+                System.out.println("No se ha seleccionado ningún producto en el carrito.");
+            }
+        }
+    }
+
+    private void eliminarDelCarrito(Producto producto) {
+        if (producto.getStock() > 1) {
+            producto.setStock(producto.getStock() - 1);
+        } else {
+            carrito.remove(producto); 
+        }
+        tablaCarrito.refresh();
+    }
+
+    private void eliminarDelCarritoPorID(int idProducto) {
+        Producto productoAEliminar = carrito.stream()
+                .filter(p -> p.getIdProducto() == idProducto)
+                .findFirst()
+                .orElse(null);
+
+        if (productoAEliminar != null) {
+            if (productoAEliminar.getStock() > 1) {
+                productoAEliminar.setStock(productoAEliminar.getStock() - 1);
+            } else {
+                carrito.remove(productoAEliminar); 
+            }
+            tablaCarrito.refresh();
+        } else {
+            System.out.println("Producto no encontrado en el carrito.");
+        }
+    }
+    
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alerta = new Alert(AlertType.WARNING);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }
+
